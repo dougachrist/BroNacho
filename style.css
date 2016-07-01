@@ -1,13 +1,13 @@
+/* base styles */
+body {
+  font-family: 'Roboto condensed';
+}
+
 header {
   height: 400px;
   background-color: #444;
-}
-
-.three-D {
-  font-family: ABeeZee ;
-  line-height: 1em;
-  color: #e60e11;
-  font-size: 82px;
-  text-shadow:0px 0px 0 rgb(209,-7,-4),1px 1px 0 rgb(199,-17,-14),2px 2px 0 rgb(188,-28,-25),3px 3px 0 rgb(178,-38,-35),4px 4px 0 rgb(167,-49,-46),5px 5px 0 rgb(157,-59,-56),6px 6px 0 rgb(146,-70,-67),7px 7px 0 rgb(135,-81,-78),8px 8px 0 rgb(125,-91,-88),9px 9px 0 rgb(114,-102,-99),10px 10px 0 rgb(104,-112,-109),11px 11px 0 rgb(93,-123,-120), 12px 12px 0 rgb(82,-134,-131),13px 13px 12px rgba(0,0,0,0.7),13px 13px 1px rgba(0,0,0,0.5),0px 0px 12px rgba(0,0,0,.2);
+  color: #eee;
+  font-size: 72px;
+  text-shadow: 3px 3px black;
   text-align: center;
 }
