@@ -1,49 +1,50 @@
 var userToppingsArray = [];
-
-var dougsToppingsArray = [true,0,0,0];
-var dylansToppingsArray = [0,true,0,0];
-var seansToppingsArray = [0,0,true,0];
-var KaylynToppingsArray = [0,0,0,true];
-var allUsers = ['Doug','Dylan','Sean','Kaylyn'];
+var presetUsers = ['Doug','Dylan','Sean','Kaylyn'];
 var bestMatch = '';
-
-var counter = 0;
 var userMatches = [];
+var allUsersObjectArray = [];
 
-var allUsersArray = [dougsToppingsArray, dylansToppingsArray, seansToppingsArray, KaylynToppingsArray];
+function NachoBuilder(userName,a,b,c,d) {
+  this.userName = userName;
+  this.guac = a;
+  this.sourCream = b;
+  this.salsa = c;
+  this.cilantro = d;
+  allUsersObjectArray.push(this);
+  this.userToppingsArray = [a,b,c,d];
+}
 
-var userName = '';
+Doug = new NachoBuilder('Doug',true,0,0,0);
+Dylan = new NachoBuilder('Dylan',0,true,0,0);
+Sean = new NachoBuilder('Sean',0,0,true,0);
+Kaylyn = new NachoBuilder('Kaylyn',0,0,0,true);
 
 var form = document.getElementById('nachoForm');
-form.addEventListener('submit', somefunction);
+form.addEventListener('submit', startBroNacho);
 
-function somefunction() {
+function startBroNacho() {
   event.preventDefault();
+
   var a = document.getElementById('guac').checked;
   var b = document.getElementById('sourCream').checked;
   var c = document.getElementById('salsa').checked;
   var d = document.getElementById('cilantro').checked;
+  var userName = document.getElementById('userNameInput');
 
-  userToppingsArray.push(a);
-  userToppingsArray.push(b);
-  userToppingsArray.push(c);
-  userToppingsArray.push(d);
+  newUser = new NachoBuilder(userName.value,a,b,c,d);
 
-  console.log(userToppingsArray);
-
-  console.log('guac: ', a);
-  console.log('sourCream: ', b);
-  console.log('salsa: ', c);
-  console.log('cilantro: ', d);
-  comparison();
+  compareToEachUser();
   console.log(bestMatch + ' is your BroNacho');
-};
+}
 
-function comparison() {
+function compareToEachUser() {
 
-  for(var i = 0; i < allUsersArray.length; i++) {
-    for(var j = 0; j < userToppingsArray.length; j++) {
-      if(userToppingsArray[j] === allUsersArray[i][j]) {
+  var last = allUsersObjectArray.length - 1;
+  var counter = 0;
+
+  for(var i = 0; i < allUsersObjectArray.length - 1; i++) {
+    for(var j = 0; j < allUsersObjectArray[i].userToppingsArray.length; j++) {
+      if(allUsersObjectArray[i].userToppingsArray[j] === allUsersObjectArray[last].userToppingsArray[j]) {
         counter ++;
       }
     }
@@ -59,7 +60,7 @@ function findBestMatch() {
   for(var i = 0; i < userMatches.length; i++) {
     if(userMatches[i] > p) {
       p = userMatches[i];
-      bestMatch = allUsers[i];
+      bestMatch = allUsersObjectArray[i].userName;
     }
   }
   console.log(p);
