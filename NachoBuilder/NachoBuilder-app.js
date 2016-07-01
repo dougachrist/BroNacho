@@ -1,8 +1,8 @@
 var userToppingsArray = [];
 var presetUsers = ['Doug','Dylan','Sean','Kaylyn'];
 var bestMatch = '';
-var userMatches = [];
 var allUsersObjectArray = [];
+var allUsersObjectArrayOrdered = [];
 
 function NachoBuilder(userName,a,b,c,d) {
   this.userName = userName;
@@ -12,12 +12,16 @@ function NachoBuilder(userName,a,b,c,d) {
   this.cilantro = d;
   allUsersObjectArray.push(this);
   this.userToppingsArray = [a,b,c,d];
+  this.matchesWithNewUser = 0;
 }
 
-Doug = new NachoBuilder('Doug',true,0,0,0);
-Dylan = new NachoBuilder('Dylan',0,true,0,0);
-Sean = new NachoBuilder('Sean',0,0,true,0);
-Kaylyn = new NachoBuilder('Kaylyn',0,0,0,true);
+Doug = new NachoBuilder('Doug',true,false,false,false);
+Dylan = new NachoBuilder('Dylan',false,true,false,false);
+Sean = new NachoBuilder('Sean',false,false,true,false);
+Kaylyn = new NachoBuilder('Kaylyn',false,false,false,true);
+Sam = new NachoBuilder('Sam',true,true,true,true);
+Nick = new NachoBuilder('Nick',false,true,true,false);
+Brian = new NachoBuilder('Brian',false,false,true,true);
 
 var form = document.getElementById('nachoForm');
 form.addEventListener('submit', startBroNacho);
@@ -35,6 +39,8 @@ function startBroNacho() {
 
   compareToEachUser();
   console.log(bestMatch + ' is your BroNacho');
+  var elP = document.getElementById('broNachoOutput');
+  elP.textContent = bestMatch + ' is your BroNacho';
 }
 
 function compareToEachUser() {
@@ -48,22 +54,26 @@ function compareToEachUser() {
         counter ++;
       }
     }
-    userMatches.push(counter);
+    allUsersObjectArray[i].matchesWithNewUser = counter;
     counter = 0;
   }
-  console.log(userMatches);
+
   findBestMatch();
 }
 
 function findBestMatch() {
-  var p = 0;
-  for(var i = 0; i < userMatches.length; i++) {
-    if(userMatches[i] > p) {
-      p = userMatches[i];
-      bestMatch = allUsersObjectArray[i].userName;
+
+  allUsersObjectArrayOrdered = allUsersObjectArrayOrdered.concat(allUsersObjectArray);
+
+  for(var f = 0; f < (allUsersObjectArrayOrdered.length - 2); f++) {
+    var g = f + 1;
+    if(allUsersObjectArrayOrdered[g].matchesWithNewUser > allUsersObjectArrayOrdered[f].matchesWithNewUser) {
+      var toFront = allUsersObjectArrayOrdered[g];
+      allUsersObjectArrayOrdered.splice(g,1);
+      allUsersObjectArrayOrdered.unshift(toFront);
+      f = -1;
     }
   }
-  console.log(p);
-  console.log(bestMatch);
+  bestMatch = allUsersObjectArrayOrdered[0].userName;
   return bestMatch;
 }
