@@ -1,10 +1,25 @@
 # Bro-Nachos
 ## Table of Contents
+* [Basic Problem Domain](### Basic Problem Domain)
 * [Onboarding Screen](### Onboarding)
 * [Nacho Builder Screen](### Nacho Builder Screen)
 * [Nacho Results Page](### Nacho Results Page)
 * [Point System](### Point System)
 * [Initial Data Required](### Initial Data Required)
+
+### Basic Problem Domain
+* match BroNachos within the class
+  * BroNacho Constructor (group members/instructors as preset instances)
+  * sign in for users (to avoid becoming your own BroNacho)
+  * form to collect nachoInput
+    * Data collection will vary (need to evaluate pictures, field with checkboxes, selector, etc.) and we will evaluate these options
+    * Error validation (TBD) to ensure successful calculation of BroNacho score
+  * Upon submission of form:
+    * loop through each instance (aka visitor) and compare all ingredients between instances using matching algorithm
+      * points for false/false match + true/true match, no points if false/true
+    * Sort that array to sort highest number of matches between multiple instances
+  * Redirect to results page:
+    
 
 ### Onboarding
 * Welcome screen with bro-natured imagery
