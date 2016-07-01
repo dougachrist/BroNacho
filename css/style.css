@@ -1,0 +1,26 @@
+/* base styles */
+body {
+  font-family: 'Roboto condensed';
+}
+
+header {
+  height: 400px;
+  background-image: url(http://i.imgur.com/FMAri5w.png);
+  background-repeat: no-repeat;
+  background-size: 700px;
+  background-position: 380px -45px;
+}
+
+header h1 {
+  font-size: 86px;
+  font-weight: bold;
+  color: #555;
+  text-shadow: 2px 2px black;
+  text-align: center;
+  position: absolute;
+  margin: 175px 570px;
+}
+
+.header-image {
+  position: relative;
+}
