@@ -5,9 +5,16 @@ body {
 
 header {
   height: 400px;
-  background-color: #444;
-  color: #eee;
+  background-image: url(http://i.imgur.com/FMAri5w.png);
+  background-repeat: no-repeat;
+  background-size: 600px;
+  background-position: 400px 0px;
+}
+
+header h1 {
   font-size: 72px;
-  text-shadow: 3px 3px black;
+  font-weight: bold;
+  color: #555;
+  text-shadow: 2px 2px black;
   text-align: center;
 }
