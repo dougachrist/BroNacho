@@ -64,11 +64,15 @@ function startBroNacho() {
   var elP = document.getElementById('broNachoOutput');
   elP.textContent = bestMatch + ' is your BroNacho';
 
-// add to local storage here
   localStorage.setItem('top3BroNachos',JSON.stringify(top3BroNachosObjArray));
   localStorage.setItem('bottom3BroNachos',JSON.stringify(bottom3BroNachosObjArray));
 
   window.open('../results.html');
+
+// console log all scores
+  for( var i = 0; i < allUsersObjectArrayOrdered.length - 1; i++){
+    console.log(allUsersObjectArrayOrdered[i].userName + ' ' + allUsersObjectArrayOrdered[i].matchesWithNewUser);
+  }
 
 }
 
@@ -79,8 +83,11 @@ function compareToEachUser() {
 
   for(var i = 0; i < allUsersObjectArray.length - 1; i++) {
     for(var j = 0; j < allUsersObjectArray[i].userToppingsArray.length; j++) {
-      if(allUsersObjectArray[i].userToppingsArray[j] === allUsersObjectArray[last].userToppingsArray[j]) {
-        counter ++;
+      if(allUsersObjectArray[i].userToppingsArray[j] === allUsersObjectArray[last].userToppingsArray[j] && (allUsersObjectArray[last].userToppingsArray[j] === true)) {
+        counter = counter + 2;
+      }
+      if(allUsersObjectArray[i].userToppingsArray[j] === allUsersObjectArray[last].userToppingsArray[j] && (allUsersObjectArray[last].userToppingsArray[j] === false)) {
+        counter = counter + 1;
       }
     }
     allUsersObjectArray[i].matchesWithNewUser = counter;
@@ -109,6 +116,6 @@ function findBestMatch() {
   bestMatch = allUsersObjectArrayOrdered[0].userName;
   bestMatchPic = allUsersObjectArrayOrdered[0].filePath;
   top3BroNachosObjArray = [allUsersObjectArrayOrdered[0],allUsersObjectArrayOrdered[1],allUsersObjectArrayOrdered[2]];
-  bottom3BroNachosObjArray = [allUsersObjectArrayOrdered[last - 2],allUsersObjectArrayOrdered[last - 1],allUsersObjectArrayOrdered[last]];
+  bottom3BroNachosObjArray = [allUsersObjectArrayOrdered[last],allUsersObjectArrayOrdered[last - 1],allUsersObjectArrayOrdered[last - 2]];
   return bestMatch;
 }
