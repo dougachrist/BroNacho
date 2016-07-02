@@ -39,10 +39,9 @@ function startBroNacho() {
   var ingred7 = document.getElementById('salsa').checked;
   var ingred8 = document.getElementById('sourCream').checked;
   var ingred9 = document.getElementById('guac').checked;
-  var ingred10 = document.getElementById('corn').checked;
-  var ingred11 = document.getElementById('olives').checked;
-  var ingred12 = document.getElementById('cilantro').checked;
-  var ingred13 = document.getElementById('beer').checked;
+  var ingred10 = document.getElementById('olives').checked;
+  var ingred11 = document.getElementById('cilantro').checked;
+  var ingred12 = document.getElementById('beer').checked;
   var userName = document.getElementById('userNameInput');
 
   newUser = new NachoBuilder(userName.value,ingred1,ingred2,ingred3,ingred4,ingred5,ingred6,ingred7,ingred8,ingred9,ingred10,ingred11,ingred12);
