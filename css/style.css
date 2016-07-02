@@ -1,7 +1,4 @@
 /* base styles */
-* {
-  outline: 1px solid blue;
-}
 
 body {
   font-family: 'Roboto Condensed', sans-serif;
@@ -11,12 +8,29 @@ body {
 
 header {
   font-weight: bold;
-  height: 130px;
-  background-color: #2D2D2D;
+  height: 150px;
+  background-color: #333;
+}
+
+.home-active {
+  margin-top: 50px;
+  margin-left: 15px;
+  background-color: #B20000;
+}
+
+.about-active {
+  margin-top: 50px;
+  background-color: rgba(25, 125, 32, 0.92);
+}
+
+.contact-active {
+  margin-top: 50px;
+  background-color: rgba(25, 125, 32, 0.92);
 }
 
 .nav a {
-  color: #878787;
+  font-size: 22px;
+  color: #999;
   text-decoration: none;
 }
 
@@ -29,7 +43,7 @@ div.primary-nav {
   width: 90px;
   float: left;
   display: inline;
-
+  margin-left: 5px;
 }
 
 .inner-header {
@@ -41,7 +55,7 @@ div.primary-nav {
   float: left;
   display: inline-block;
   margin: 0 20px;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .social-icons li {
@@ -53,6 +67,7 @@ div.primary-nav {
 .social-icons li a img {
     margin-top: 10px;
     height: 35px;
+    margin-top: 60px;
 }
 
 
@@ -72,8 +87,9 @@ main {
 }
 
 .logo {
-  height:120px
+  height:120px;
   /*position: absolute;*/
+  padding-top: 15px;
 }
 
 
