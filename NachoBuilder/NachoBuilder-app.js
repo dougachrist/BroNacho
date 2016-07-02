@@ -1,28 +1,40 @@
-var userToppingsArray = [];
-var presetUsers = ['Doug','Dylan','Sean','Kaylyn'];
+// var userToppingsArray = [];
+var presetUsers = ['Doug','Dylan','Sean','Kaylyn','Sam','Nick','Brian','Nadia'];
 var bestMatch = '';
+var bestMatchPic = '';
 var allUsersObjectArray = [];
 var allUsersObjectArrayOrdered = [];
+var top3BroNachosObjArray = [];
+var bottom3BroNachosObjArray = [];
 
-function NachoBuilder(userName,a,b,c,d) {
+function NachoBuilder(userName,filePath,ingred1,ingred2,ingred3,ingred4,ingred5,ingred6,ingred7,ingred8,ingred9,ingred10,ingred11,ingred12) {
   this.userName = userName;
-  this.guac = a;
-  this.sourCream = b;
-  this.salsa = c;
-  this.cilantro = d;
+  this.filePath = filePath;
+  this.rice = ingred1;
+  this.beans = ingred2;
+  this.chicken = ingred3;
+  this.onions = ingred4;
+  this.jalapenos = ingred5;
+  this.corn = ingred6;
+  this.salsa = ingred7;
+  this.sourCream = ingred8;
+  this.guac = ingred9;
+  this.olives = ingred10;
+  this.cilantro = ingred11;
+  this.beer = ingred12;
   allUsersObjectArray.push(this);
-  this.userToppingsArray = [a,b,c,d];
+  this.userToppingsArray = [ingred1,ingred2,ingred3,ingred4,ingred5,ingred6,ingred7,ingred8,ingred9,ingred10,ingred11,ingred12];
   this.matchesWithNewUser = 0;
 }
 
-Doug = new NachoBuilder('Doug',true,false,false,false,true,false,false,true,true,false,true,false);
-Dylan = new NachoBuilder('Dylan',false,true,false,false,true,true,false,false,true,true,false,false);
-Sean = new NachoBuilder('Sean',false,false,true,false,true,true,false,false,false,true,true,false);
-Kaylyn = new NachoBuilder('Kaylyn',false,false,false,true,false,false,false,true,false,true,true,true);
-Sam = new NachoBuilder('Sam',true,true,true,true,false,false,false,false,true,true,true,false);
-Nick = new NachoBuilder('Nick',false,true,true,false,true,true,true,false,false,true,false,true);
-Brian = new NachoBuilder('Brian',false,false,true,true,false,true,true,false,false,false,false,false);
-Nadia = new NachoBuilder('Nadia',true,false,true,false,true,false,false,true,true,true,false,false);
+Doug = new NachoBuilder('Doug','../imgs/doug.jpg',true,false,false,false,true,false,false,true,true,false,true,false);
+Dylan = new NachoBuilder('Dylan','../imgs/dylan.jpeg',false,true,false,false,true,true,false,false,true,true,false,false);
+Sean = new NachoBuilder('Sean','../imgs/sean.jpg',false,false,true,false,true,true,false,false,false,true,true,false);
+Kaylyn = new NachoBuilder('Kaylyn','../imgs/kaylyn.jpeg',false,false,false,true,false,false,false,true,false,true,true,true);
+Sam = new NachoBuilder('Sam','../imgs/sam.jpeg',true,true,true,true,false,false,false,false,true,true,true,false);
+Nick = new NachoBuilder('Nick','../imgs/nick.jpg',false,true,true,false,true,true,true,false,false,true,false,true);
+Brian = new NachoBuilder('Brian','../imgs/brian.jpg',false,false,true,true,false,true,true,false,false,false,false,false);
+Nadia = new NachoBuilder('Nadia','../imgs/nadia.jpg',true,false,true,false,true,false,false,true,true,true,false,false);
 
 var form = document.getElementById('nachoForm');
 form.addEventListener('submit', startBroNacho);
@@ -48,8 +60,14 @@ function startBroNacho() {
 
   compareToEachUser();
   console.log(bestMatch + ' is your BroNacho');
+  document.getElementById('broNachoPic').setAttribute('src', bestMatchPic);
   var elP = document.getElementById('broNachoOutput');
   elP.textContent = bestMatch + ' is your BroNacho';
+
+// add to local storage here
+  localStorage.setItem('top3BroNachos',JSON.stringify(top3BroNachosObjArray));
+  localStorage.setItem('bottom3BroNachos',JSON.stringify(bottom3BroNachosObjArray));
+
   window.open('../results.html');
 
 }
@@ -85,6 +103,12 @@ function findBestMatch() {
       f = -1;
     }
   }
+
+  var last = allUsersObjectArrayOrdered.length - 1;
+
   bestMatch = allUsersObjectArrayOrdered[0].userName;
+  bestMatchPic = allUsersObjectArrayOrdered[0].filePath;
+  top3BroNachosObjArray = [allUsersObjectArrayOrdered[0],allUsersObjectArrayOrdered[1],allUsersObjectArrayOrdered[2]];
+  bottom3BroNachosObjArray = [allUsersObjectArrayOrdered[last - 2],allUsersObjectArrayOrdered[last - 1],allUsersObjectArrayOrdered[last]];
   return bestMatch;
 }

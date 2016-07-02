@@ -2,6 +2,7 @@
 <html>
   <head>
     <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="NachoBuilder-style.css"
   </head>
   <body>
     <header>
@@ -11,22 +12,23 @@
         <fieldset>
           <label for="input_box">Name:</label>
           <input type="text" name="input_box" id="userNameInput">
-          <input type="checkbox" name="topping" value="rice" id="rice"><span>Would you like rice?</span>
-          <input type="checkbox" name="topping" value="beans" id="beans">a dollop of sour cream?
-          <input type="checkbox" name="topping" value="chicken" id="chicken"><span>grilled chicken?</span>
-          <input type="checkbox" name="topping" value="onions" id="onions"><span>onions?</span>
-          <input type="checkbox" name="topping" value="jalapenos" id="jalapenos"> <span>spicy jalapenos</span>
-          <input type="checkbox" name="topping" value="corn" id="corn"><span>corn??</span>
-          <input type="checkbox" name="topping" value="salsa" id="salsa"><span>homemade salsa?</span>
-          <input type="checkbox" name="topping" value="sourCream" id="sourCream"><span>a dollop of sour cream?</span>
-          <input type="checkbox" name="topping" value="guac" id="guac"><span>everyone like guacamole, no?</span>
-          <input type="checkbox" name="topping" value="olives" id="olives"><span>olives??</span>
-          <input type="checkbox" name="topping" value="cilantro" id="cilantro"><span>fresh cilantro?</span>
-          <input type="checkbox" name="topping" value="beer" id="beer"><span>cerveza to drink?</span>
-          <input type="submit" id="submitButton">
+          <label><input type="checkbox" name="rice" value="rice" id="rice">Would you like rice?</label>
+          <label><input type="checkbox" name="topping" value="beans" id="beans">bean?</label>
+          <label><input type="checkbox" name="topping" value="chicken" id="chicken">grilled chicken?</label>
+          <label><input type="checkbox" name="topping" value="onions" id="onions">onions?</label>
+          <label><input type="checkbox" name="topping" value="jalapenos" id="jalapenos">spicy jalapenos</label>
+          <label><input type="checkbox" name="topping" value="corn" id="corn">corn??</label>
+          <label><input type="checkbox" name="topping" value="salsa" id="salsa">homemade salsa?</label>
+          <label><input type="checkbox" name="topping" value="sourCream" id="sourCream">a dollop of sour cream?</label>
+          <label><input type="checkbox" name="topping" value="guac" id="guac">everyone like guacamole, no?</label>
+          <label><input type="checkbox" name="topping" value="olives" id="olives">olives??</label>
+          <label><input type="checkbox" name="topping" value="cilantro" id="cilantro">fresh cilantro?</label>
+          <label><input type="checkbox" name="topping" value="beer" id="beer">cerveza to drink?</label>
+          <label><input type="submit" id="submitButton">
         </fieldset>
       </form>
       <section>
+        <img id="broNachoPic">
         <p id="broNachoOutput"></p>
       </section>
     </main>
