@@ -1,24 +1,40 @@
 /* base styles */
-* {
-  outline: 1px solid blue;
-}
 
 body {
   font-family: 'Roboto Condensed', sans-serif;
 }
 
+/* site styles */
+
 header {
   font-weight: bold;
-  height: 80px;
-  background-color: #2D2D2D;
+  height: 150px;
+  background-color: #444;
+}
+
+.home-active {
+  margin-top: 50px;
+  margin-left: 15px;
+  background-color: #B20000;
+}
+
+.about-active {
+  margin-top: 50px;
+  background-color: rgba(25, 125, 32, 0.92);
+}
+
+.contact-active {
+  margin-top: 50px;
+  background-color: rgba(25, 125, 32, 0.92);
 }
 
 .nav a {
-  color: #878787;
+  font-size: 22px;
+  color: #999;
   text-decoration: none;
 }
 
-header div div {
+div.primary-nav {
   background-color: #000;
 }
 
@@ -27,11 +43,10 @@ header div div {
   width: 90px;
   float: left;
   display: inline;
-
+  margin-left: 5px;
 }
-
-.inner-header {
-  width: 850px;
+.header-wrapper {
+  width: 960px;
   margin: 0 auto;
 }
 
@@ -39,7 +54,7 @@ header div div {
   float: left;
   display: inline-block;
   margin: 0 20px;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .social-icons li {
@@ -49,8 +64,10 @@ header div div {
 }
 
 .social-icons li a img {
-    margin-top: 10px;
-    height: 35px;
+  margin-top: 10px;
+  height: 35px;
+  margin-top: 55px;
+  margin-right: 15px;
 }
 
 
@@ -64,13 +81,38 @@ main {
 }
 
 .logo-container {
+  margin:0 auto;
   position: relative;
+  text-align:center;
 }
 
 .logo {
+  height:120px;
+  position: relative;
+  padding-top: 15px;
+}
+
+.bronacho-header {
   position: absolute;
-  top: 20%;
-  bottom: 20%;
-  left: 10%;
-  right: 10%;
+  z-index: 1;
+  top: 70px;
+  left: 85px;
+  font-size: 38px;
+  font-weight: bold;
+  text-shadow: 1px 1px white;
+}
+
+.left-header {
+  float:left;
+  width: 320px;
+}
+
+.center-header {
+  float:left;
+  width: 320px;
+}
+
+.right-header {
+  float:right;
+  width: 320px;
 }
