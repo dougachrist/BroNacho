@@ -45,8 +45,7 @@ div.primary-nav {
   display: inline;
   margin-left: 5px;
 }
-
-.inner-header {
+.header-wrapper {
   width: 960px;
   margin: 0 auto;
 }
