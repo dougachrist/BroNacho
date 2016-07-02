@@ -9,7 +9,7 @@ body {
 header {
   font-weight: bold;
   height: 150px;
-  background-color: #333;
+  background-color: #444;
 }
 
 .home-active {
@@ -88,10 +88,19 @@ main {
 
 .logo {
   height:120px;
-  /*position: absolute;*/
+  position: relative;
   padding-top: 15px;
 }
 
+.bronacho-header {
+  position: absolute;
+  z-index: 1;
+  top: 70px;
+  left: 85px;
+  font-size: 38px;
+  font-weight: bold;
+  text-shadow: 1px 1px white;
+}
 
 .left-header {
   float:left;
