@@ -7,9 +7,11 @@ body {
   font-family: 'Roboto Condensed', sans-serif;
 }
 
+/* site styles */
+
 header {
   font-weight: bold;
-  height: 80px;
+  height: 130px;
   background-color: #2D2D2D;
 }
 
@@ -18,7 +20,7 @@ header {
   text-decoration: none;
 }
 
-header div div {
+div.primary-nav {
   background-color: #000;
 }
 
@@ -31,7 +33,7 @@ header div div {
 }
 
 .inner-header {
-  width: 850px;
+  width: 960px;
   margin: 0 auto;
 }
 
@@ -64,13 +66,28 @@ main {
 }
 
 .logo-container {
+  margin:0 auto;
   position: relative;
+  text-align:center;
 }
 
 .logo {
-  position: absolute;
-  top: 20%;
-  bottom: 20%;
-  left: 10%;
-  right: 10%;
+  height:120px
+  /*position: absolute;*/
+}
+
+
+.left-header {
+  float:left;
+  width: 320px;
+}
+
+.center-header {
+  float:left;
+  width: 320px;
+}
+
+.right-header {
+  float:right;
+  width: 320px;
 }
