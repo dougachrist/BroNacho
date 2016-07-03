@@ -1,17 +1,64 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
   <head>
     <title> Your Results! </title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/results.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
   </head>
   <body>
     <header>
+      <div class="header-wrapper">
+        <div class="left-header">
+          <div class="nav-active primary-nav">
+            <div class="home-active"></div>
+            <div class="about-active"></div>
+            <div class="contact-active"></div>
+          </div>
+          <ul class="nav clearfix">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="public/about.html">About</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="center-header">
+          <div class="logo-container">
+            <h1 class="bronacho-header">BroNacho</h1>
+            <img class="logo" src="imgs/bro_nacho_t1.png">
+          </div>
+        </div>
+        <div class="right-header">
+          <ul class="social-icons">
+            <li><a href="#"><img src="imgs/instagram.png"></a></li>
+            <li><a href="#"><img src="imgs/twitter.png"></a></li>
+            <li><a href="#"><img src="imgs/facebook.png"></a></li>
+          </ul>
+        </div>
+      </div>
     </header>
+    <main>
     <h1> Your Results </h1>
     <section>
-      <p> You are % BroNacho compatible with _______! Time to enjoy some nachos. </p>
+      <ol>
+        <h2> Bro Nachos! </h2>
+        <li> <img src = top3BroNachosObjArray[0].filePath> <p> top3BroNachosObjArray[0].userName </p> </li>
+        <li> <img src = top3BroNachosObjArray[1].filePath> <p> top3BroNachosObjArray[1].userName </p> </li>
+        <li> <img src = top3BroNachosObjArray[2].filePath> <p> top3BroNachosObjArray[2].userName </p></li>
+      </ol>
     </section>
     <section>
-      <img src = "#">
+      <ol>
+        <h2> Nacho Bros! </h2>
+        <li> <img src = bottom3BroNachosObjArray[0].filePath> <p> bottom3BroNachosObjArray[0].userName </p> </li>
+        <li> <img src = bottom3BroNachosObjArray[1].filePath> <p> bottom3BroNachosObjArray[1].userName </p> </li>
+        <li> <img src = bottom3BroNachosObjArray[2].filePath> <p> bottom3BroNachosObjArray[2].userName </p></li>
+      </ol>
     </section>
+    <form action="https://www.facebook.com/">
+      <input type= "submit" value= "Go to Facebook">
+    </form>
+  </main>
+    <script src="NachoBuilder-app.js"> </script>
   </body>
 </html>
