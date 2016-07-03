@@ -6,6 +6,7 @@ var allUsersObjectArray = [];
 var allUsersObjectArrayOrdered = [];
 var top3BroNachosObjArray = [];
 var bottom3BroNachosObjArray = [];
+var allToppingsArray = [ingred1,ingred2,ingred3,ingred4,ingred5,ingred6,ingred7,ingred8,ingred9,ingred10,ingred11,ingred12];
 
 function NachoBuilder(userName,filePath,ingred1,ingred2,ingred3,ingred4,ingred5,ingred6,ingred7,ingred8,ingred9,ingred10,ingred11,ingred12) {
   this.userName = userName;
@@ -56,18 +57,52 @@ var userName = document.getElementById('userNameInput');
 var ricePhotoImg = document.getElementById('ricePhoto');
 var beansPhotoImg = document.getElementById('beansPhoto');
 var chickenPhotoImg = document.getElementById('chickenPhoto');
+var onionsPhotoImg = document.getElementById('onionsPhoto');
+var jalapenosPhotoImg = document.getElementById('jalapenosPhoto');
+var cornPhotoImg = document.getElementById('cornPhoto');
+var salsaPhotoImg = document.getElementById('salsaPhoto');
+var sourCreamPhotoImg = document.getElementById('sourCreamPhoto');
+var guacPhotoImg = document.getElementById('guacPhoto');
+var olivesPhotoImg = document.getElementById('olivesPhoto');
+var cilantroPhotoImg = document.getElementById('cilantroPhoto');
+var beerPhotoImg = document.getElementById('beerPhoto');
+
 ricePhotoImg.addEventListener('click', turnGreen);
 beansPhotoImg.addEventListener('click', turnGreen);
 chickenPhotoImg.addEventListener('click', turnGreen);
+onionsPhotoImg.addEventListener('click', turnGreen);
+jalapenosPhotoImg.addEventListener('click', turnGreen);
+cornPhotoImg.addEventListener('click', turnGreen);
+salsaPhotoImg.addEventListener('click', turnGreen);
+sourCreamPhotoImg.addEventListener('click', turnGreen);
+guacPhotoImg.addEventListener('click', turnGreen);
+olivesPhotoImg.addEventListener('click', turnGreen);
+cilantroPhotoImg.addEventListener('click', turnGreen);
+beerPhotoImg.addEventListener('click', turnGreen);
 
 function turnGreen() {
   if (this.className === 'inactive') {
     this.className = 'active';
-    document.getElementById(this.alt).checked = true;
+    var alt = document.getElementById(this.alt);
+    alt.checked = true;
+    removeHidden();
+    var updateList = document.getElementById('ingredientListInBuilder');
+    var liEl = document.createElement('li');
+    liEl.textContent = this.alt;
+    updateList.appendChild(liEl);
+    console.log(this.alt + ' has been selected');
   } else {
     this.className = 'inactive';
     document.getElementById(this.alt).checked = false;
+    console.log(this.alt + ' has been unchecked');
   }
+}
+
+function removeHidden() {
+  var updateList = document.getElementById('ingredientListInBuilder');
+  var endOfList = document.getElementById('endOfSelectedIngredients');
+  updateList.className = '';
+  endOfList.className = '';
 }
 
 function startBroNacho() {
