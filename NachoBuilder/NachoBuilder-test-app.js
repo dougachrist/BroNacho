@@ -55,16 +55,20 @@ var userName = document.getElementById('userNameInput');
 
 var ricePhotoImg = document.getElementById('ricePhoto');
 var beansPhotoImg = document.getElementById('beansPhoto');
+var chickenPhotoImg = document.getElementById('chickenPhoto');
 ricePhotoImg.addEventListener('click', turnGreen);
 beansPhotoImg.addEventListener('click', turnGreen);
+chickenPhotoImg.addEventListener('click', turnGreen);
 
 function turnGreen() {
   if (this.className === 'inactive') {
     this.className = 'active';
-    document.getElementById('rice').checked = true;
+    var passThru = this.alt;
+    document.getElementById(this.alt).checked = true;
   } else {
     this.className = 'inactive';
-    document.getElementById('rice').checked = false;
+    var passThru = this.alt;
+    document.getElementById(this.alt).checked = false;
   }
 }
 
