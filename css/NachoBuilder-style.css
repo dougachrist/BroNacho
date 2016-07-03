@@ -2,6 +2,27 @@ label {
   display: block;
 }
 
-.nacho-form {
-  
+img {
+  width: 200px;
+  height: 200px;
+  border: 5px solid black;
+  margin: 5px;
+}
+
+img:hover {
+  width: 200px;
+  height: 200px;
+  border: 5px solid green;
+  margin: 5px;
+}
+
+img.active {
+  width: 200px;
+  height: 200px;
+  border: 5px solid orange;
+  margin: 5px;
+}
+
+.nacho-form {  
+
 }
