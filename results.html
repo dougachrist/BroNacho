@@ -42,7 +42,7 @@
     <section>
       <ol>
         <h2> Bro Nachos! </h2>
-        <li> <img src = top3BroNachosObjArray[0].filePath> <p> top3BroNachosObjArray[0].userName </p> </li>
+        <li> <img src = JSON.parse(localStorage.top3BroNachosObjArray[0].filePath)> <p> JSON.parse(localStorage.top3BroNachosObjArray[0].userName)> </p> </li>
         <li> <img src = top3BroNachosObjArray[1].filePath> <p> top3BroNachosObjArray[1].userName </p> </li>
         <li> <img src = top3BroNachosObjArray[2].filePath> <p> top3BroNachosObjArray[2].userName </p></li>
       </ol>
@@ -50,15 +50,16 @@
     <section>
       <ol>
         <h2> Nacho Bros! </h2>
-        <li> <img src = bottom3BroNachosObjArray[0].filePath> <p> bottom3BroNachosObjArray[0].userName </p> </li>
+        <li> <img src = JSON.parse(bottom3BroNachosObjArray[0].filePath)> <p> bottom3BroNachosObjArray[0].userName </p> </li>
         <li> <img src = bottom3BroNachosObjArray[1].filePath> <p> bottom3BroNachosObjArray[1].userName </p> </li>
         <li> <img src = bottom3BroNachosObjArray[2].filePath> <p> bottom3BroNachosObjArray[2].userName </p></li>
       </ol>
     </section>
     <form action="https://www.facebook.com/">
-      <input type= "submit" value= "Go to Facebook">
+      <input type= "image" src="imgs/facebook.png" value= "Share on Facebook"> 
     </form>
   </main>
-    <script src="NachoBuilder-app.js"> </script>
+    <script type = "text/javascript" src="NachoBuilder-app.js"> </script>
+    <script type = "text/javascript" src = "results.js"> </script>
   </body>
 </html>
