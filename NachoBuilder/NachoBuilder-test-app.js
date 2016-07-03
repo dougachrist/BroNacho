@@ -63,18 +63,15 @@ chickenPhotoImg.addEventListener('click', turnGreen);
 function turnGreen() {
   if (this.className === 'inactive') {
     this.className = 'active';
-    var passThru = this.alt;
     document.getElementById(this.alt).checked = true;
   } else {
     this.className = 'inactive';
-    var passThru = this.alt;
     document.getElementById(this.alt).checked = false;
   }
 }
 
 function startBroNacho() {
   event.preventDefault();
-
 
   newUser = new NachoBuilder(userName.value,ingred1,ingred2,ingred3,ingred4,ingred5,ingred6,ingred7,ingred8,ingred9,ingred10,ingred11,ingred12);
 
