@@ -1,3 +1,7 @@
 body {
   background-color: #ffffe6;
 }
+
+section {
+  display: inline-block;
+}
