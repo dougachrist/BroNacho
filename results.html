@@ -13,12 +13,12 @@
         <div class="left-header">
           <div class="nav-active primary-nav">
             <div class="home-active"></div>
-            <div class="about-active"></div>
+            <div class="about-active"> <a href = "about.html"> </div>
             <div class="contact-active"></div>
           </div>
           <ul class="nav clearfix">
             <li><a href="index.html">Home</a></li>
-            <li><a href="public/about.html">About</a></li>
+            <li><a href="about.html">About</a></li>
             <li><a href="#">Contact</a></li>
           </ul>
         </div>
@@ -42,7 +42,7 @@
     <section>
       <ol>
         <h2> Bro Nachos! </h2>
-        <li> <img src = JSON.parse(localStorage.top3BroNachosObjArray[0].filePath)> <p> JSON.parse(localStorage.top3BroNachosObjArray[0].userName)> </p> </li>
+        <li> <img id="BroNacho1"> <p> JSON.parse(localStorage.top3BroNachosObjArray[0].userName)> </p> </li>
         <li> <img src = top3BroNachosObjArray[1].filePath> <p> top3BroNachosObjArray[1].userName </p> </li>
         <li> <img src = top3BroNachosObjArray[2].filePath> <p> top3BroNachosObjArray[2].userName </p></li>
       </ol>
@@ -56,7 +56,7 @@
       </ol>
     </section>
     <form action="https://www.facebook.com/">
-      <input type= "image" src="imgs/facebook.png" value= "Share on Facebook"> 
+      <input type= "image" src="imgs/facebook.png" value= "Share on Facebook">
     </form>
   </main>
     <script type = "text/javascript" src="NachoBuilder-app.js"> </script>
