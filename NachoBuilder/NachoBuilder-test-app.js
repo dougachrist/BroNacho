@@ -55,22 +55,23 @@ var userName = document.getElementById('userNameInput');
 
 var ricePhotoImg = document.getElementById('ricePhoto');
 var beansPhotoImg = document.getElementById('beansPhoto');
+var chickenPhotoImg = document.getElementById('chickenPhoto');
 ricePhotoImg.addEventListener('click', turnGreen);
 beansPhotoImg.addEventListener('click', turnGreen);
+chickenPhotoImg.addEventListener('click', turnGreen);
 
 function turnGreen() {
   if (this.className === 'inactive') {
     this.className = 'active';
-    document.getElementById('rice').checked = true;
+    document.getElementById(this.alt).checked = true;
   } else {
     this.className = 'inactive';
-    document.getElementById('rice').checked = false;
+    document.getElementById(this.alt).checked = false;
   }
 }
 
 function startBroNacho() {
   event.preventDefault();
-
 
   newUser = new NachoBuilder(userName.value,ingred1,ingred2,ingred3,ingred4,ingred5,ingred6,ingred7,ingred8,ingred9,ingred10,ingred11,ingred12);
 

@@ -2,14 +2,14 @@ label {
   display: block;
 }
 
-/*img {
+img.inactive {
   width: 200px;
   height: 200px;
   border: 5px solid black;
   margin: 5px;
 }
 
-img:hover {
+img.inactive:hover {
   width: 200px;
   height: 200px;
   border: 5px solid green;
@@ -21,7 +21,14 @@ img.active {
   height: 200px;
   border: 5px solid orange;
   margin: 5px;
-}*/
+}
+
+img.active:hover {
+  width: 200px;
+  height: 200px;
+  border: 5px solid orange;
+  margin: 5px;
+}
 
 .nacho-form {
   width: 250px;
