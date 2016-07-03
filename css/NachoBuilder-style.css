@@ -1,3 +1,21 @@
+/* Global Styles */
+.hidden {
+  display: none;
+}
+
+/* Picked Ingredients Styles */
+h2, h3, h5 {
+  text-align: center;
+}
+
+h2 {
+  font-size: 45px;
+}
+
+h3 {
+  font-size: 30px;
+}
+
 label {
   display: block;
 }
@@ -12,21 +30,21 @@ img.inactive {
 img.inactive:hover {
   width: 200px;
   height: 200px;
-  border: 5px solid green;
+  border: 5px solid orange;
   margin: 5px;
 }
 
 img.active {
   width: 200px;
   height: 200px;
-  border: 5px solid orange;
+  border: 5px solid green;
   margin: 5px;
 }
 
 img.active:hover {
   width: 200px;
   height: 200px;
-  border: 5px solid orange;
+  border: 5px solid green;
   margin: 5px;
 }
 
@@ -35,3 +53,41 @@ img.active:hover {
   margin: 0 auto;
   margin-top: 75px;
 }
+
+#photos {
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+#photo_wrapper {
+  max-width: 900px;
+  width: 100%;
+  margin: 30px auto;
+  padding-top: 60px;
+}
+
+#ingredientListInBuilder {
+    max-width: 320px;
+    padding: 3px 0;
+    margin: 0 auto;
+}
+
+#ingredientListInBuilder li {
+  display: inline-block;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 3px;
+  font-size: 20px;
+  margin: 5px;
+}
+
+#selectedIngredients {
+  max-width: 940px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px 10px;
+  position: fixed;
+  background-color: #ccc;
+  opacity: .8;
+  bottom: 0;
