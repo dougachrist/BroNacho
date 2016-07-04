@@ -1,4 +1,4 @@
-// var userToppingsArray = [];
+
 var presetUsers = ['Doug','Dylan','Sean','Kaylyn','Sam','Nick','Brian','Nadia'];
 var bestMatch = '';
 var bestMatchPic = '';
@@ -6,7 +6,6 @@ var allUsersObjectArray = [];
 var allUsersObjectArrayOrdered = [];
 var top3BroNachosObjArray = [];
 var bottom3BroNachosObjArray = [];
-//var allToppingsArray = [ingred1,ingred2,ingred3,ingred4,ingred5,ingred6,ingred7,ingred8,ingred9,ingred10,ingred11,ingred12];
 var allToppingsArray = [];
 var ingredientsArray = ['rice', 'beans', 'chicken', 'onions', 'jalapenos', 'corn', 'salsa', 'sourCream', 'guac', 'olives', 'cilantro', 'beer'];
 
@@ -20,85 +19,31 @@ function addIngredients () {
 };
 addIngredients();
 
-function NachoBuilder(userName,filePath,ingred1,ingred2,ingred3,ingred4,ingred5,ingred6,ingred7,ingred8,ingred9,ingred10,ingred11,ingred12) {
+function NachoBuilder(userName, filePath, allToppingsArray) {
   this.userName = userName;
   this.filePath = filePath;
   for(var i = 0; i < ingredientsArray.length; i++) {
     this[ingredientsArray[i]] = allToppingsArray[i];
   }
-  /*
-  this.rice = ingred1;
-  this.beans = ingred2;
-  this.chicken = ingred3;
-  this.onions = ingred4;
-  this.jalapenos = ingred5;
-  this.corn = ingred6;
-  this.salsa = ingred7;
-  this.sourCream = ingred8;
-  this.guac = ingred9;
-  this.olives = ingred10;
-  this.cilantro = ingred11;
-  this.beer = ingred12;
-  */
+
   allUsersObjectArray.push(this);
-  this.userToppingsArray = [ingred1,ingred2,ingred3,ingred4,ingred5,ingred6,ingred7,ingred8,ingred9,ingred10,ingred11,ingred12];
+  this.userToppingsArray = allToppingsArray;
   this.matchesWithNewUser = 0;
 }
 
-Doug = new NachoBuilder('Doug','../imgs/doug.jpg',true,false,false,false,true,false,false,true,true,false,true,false);
-Dylan = new NachoBuilder('Dylan','../imgs/dylan.jpeg',false,true,false,false,true,true,false,false,true,true,false,false);
-Sean = new NachoBuilder('Sean','../imgs/sean.jpg',false,false,true,false,true,true,false,false,false,true,true,false);
-Kaylyn = new NachoBuilder('Kaylyn','../imgs/kaylyn.jpeg',false,false,false,true,false,false,false,true,false,true,true,true);
-Sam = new NachoBuilder('Sam','../imgs/sam.jpeg',true,true,true,true,false,false,false,false,true,true,true,false);
-Nick = new NachoBuilder('Nick','../imgs/nick.jpg',false,true,true,false,true,true,true,false,false,true,false,true);
-Brian = new NachoBuilder('Brian','../imgs/brian.jpg',false,false,true,true,false,true,true,false,false,false,false,false);
-Nadia = new NachoBuilder('Nadia','../imgs/nadia.jpg',true,false,true,false,true,false,false,true,true,true,false,false);
+Doug = new NachoBuilder('Doug','../imgs/doug.jpg',[true,false,false,false,true,false,false,true,true,false,true,false]);
+Dylan = new NachoBuilder('Dylan','../imgs/dylan.jpeg',[false,true,false,false,true,true,false,false,true,true,false,false]);
+Sean = new NachoBuilder('Sean','../imgs/sean.jpg',[false,false,true,false,true,true,false,false,false,true,true,false]);
+Kaylyn = new NachoBuilder('Kaylyn','../imgs/kaylyn.jpeg',[false,false,false,true,false,false,false,true,false,true,true,true]);
+Sam = new NachoBuilder('Sam','../imgs/sam.jpeg',[true,true,true,true,false,false,false,false,true,true,true,false]);
+Nick = new NachoBuilder('Nick','../imgs/nick.jpg',[false,true,true,false,true,true,true,false,false,true,false,true]);
+Brian = new NachoBuilder('Brian','../imgs/brian.jpg',[false,false,true,true,false,true,true,false,false,false,false,false]);
+Nadia = new NachoBuilder('Nadia','../imgs/nadia.jpg',[true,false,true,false,true,false,false,true,true,true,false,false]);
 
 var form = document.getElementById('nachoForm');
 form.addEventListener('submit', startBroNacho);
 
-// var ingred1 = document.getElementById('rice').checked;
-// var ingred2 = document.getElementById('beans').checked;
-// var ingred3 = document.getElementById('chicken').checked;
-// var ingred4 = document.getElementById('onions').checked;
-// var ingred5 = document.getElementById('jalapenos').checked;
-// var ingred6 = document.getElementById('corn').checked;
-// var ingred7 = document.getElementById('salsa').checked;
-// var ingred8 = document.getElementById('sourCream').checked;
-// var ingred9 = document.getElementById('guac').checked;
-// var ingred10 = document.getElementById('olives').checked;
-// var ingred11 = document.getElementById('cilantro').checked;
-// var ingred12 = document.getElementById('beer').checked;
-
-
-
 var userName = document.getElementById('userNameInput');
-
-// var ricePhotoImg = document.getElementById('ricePhoto');
-// var beansPhotoImg = document.getElementById('beansPhoto');
-// var chickenPhotoImg = document.getElementById('chickenPhoto');
-// var onionsPhotoImg = document.getElementById('onionsPhoto');
-// var jalapenosPhotoImg = document.getElementById('jalapenosPhoto');
-// var cornPhotoImg = document.getElementById('cornPhoto');
-// var salsaPhotoImg = document.getElementById('salsaPhoto');
-// var sourCreamPhotoImg = document.getElementById('sourCreamPhoto');
-// var guacPhotoImg = document.getElementById('guacPhoto');
-// var olivesPhotoImg = document.getElementById('olivesPhoto');
-// var cilantroPhotoImg = document.getElementById('cilantroPhoto');
-// var beerPhotoImg = document.getElementById('beerPhoto');
-//
-// ricePhotoImg.addEventListener('click', turnGreen);
-// beansPhotoImg.addEventListener('click', turnGreen);
-// chickenPhotoImg.addEventListener('click', turnGreen);
-// onionsPhotoImg.addEventListener('click', turnGreen);
-// jalapenosPhotoImg.addEventListener('click', turnGreen);
-// cornPhotoImg.addEventListener('click', turnGreen);
-// salsaPhotoImg.addEventListener('click', turnGreen);
-// sourCreamPhotoImg.addEventListener('click', turnGreen);
-// guacPhotoImg.addEventListener('click', turnGreen);
-// olivesPhotoImg.addEventListener('click', turnGreen);
-// cilantroPhotoImg.addEventListener('click', turnGreen);
-// beerPhotoImg.addEventListener('click', turnGreen);
 
 function turnGreen() {
   if (this.className === 'inactive') {
@@ -128,7 +73,7 @@ function removeHidden() {
 function startBroNacho() {
   event.preventDefault();
 
-  newUser = new NachoBuilder(userName.value,ingred1,ingred2,ingred3,ingred4,ingred5,ingred6,ingred7,ingred8,ingred9,ingred10,ingred11,ingred12);
+  newUser = new NachoBuilder(userName.value,'', allToppingsArray);
 
   compareToEachUser();
   console.log(bestMatch + ' is your BroNacho');
