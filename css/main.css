@@ -1,11 +1,14 @@
+
+body {
+  font-family: helvetica;
+}
+
+
 img {
   height: 200px;
   width: 200px;
-  display: inline;
-
 }
 
 p {
-  display: inline;
   width: 50%;
 }
