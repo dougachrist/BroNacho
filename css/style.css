@@ -2,6 +2,7 @@
 
 body {
   font-family: 'Roboto Condensed', sans-serif;
+  background-color: #efefef;
 }
 
 /* site styles */
@@ -30,7 +31,7 @@ header {
 
 .nav a {
   font-size: 22px;
-  color: #999;
+  color: #efefef;
   text-decoration: none;
 }
 
@@ -80,6 +81,18 @@ main {
   margin: 0 auto;
 }
 
+main h1 {
+  text-align: center;
+  margin: 50px;
+  font-size: 42px;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+main p {
+  margin: 10px;
+}
+
 .logo-container {
   margin:0 auto;
   position: relative;
@@ -93,13 +106,15 @@ main {
 }
 
 .bronacho-header {
+  color: #efefef;
   position: absolute;
   z-index: 1;
   top: 70px;
-  left: 85px;
+  left: 80px;
   font-size: 38px;
   font-weight: bold;
-  text-shadow: 1px 1px white;
+  text-shadow: 3px 3px black;
+  letter-spacing: 2px;
 }
 
 .left-header {
