@@ -54,6 +54,7 @@ function turnGreen() {
     alt.checked = true;
     userSelectedArray.push(alt);
     removeHidden();
+    updateList.innerHTML = '';
     for (var i = 0; i < userSelectedArray.length; i++) {
       var liEl = document.createElement('li');
       liEl.textContent = userSelectedArray[i].value;
@@ -63,7 +64,14 @@ function turnGreen() {
   } else {
     this.className = 'inactive';
     document.getElementById(this.alt).checked = false;
-    // removeFromPreviewFooter();
+    for (var i = 0; i < userSelectedArray.length; i++) {
+      if(this.alt === userSelectedArray[i].value) {
+        userSelectedArray.splice(i,1);
+      }
+      // var liEl = document.createElement('li');
+      // liEl.textContent = userSelectedArray[i].value;
+      // updateList.appendChild(liEl);
+    }
     console.log(this.alt + ' has been unchecked');
   }
 }
