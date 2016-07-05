@@ -102,6 +102,7 @@ function startBroNacho() {
 
   localStorage.setItem('top3BroNachos',JSON.stringify(top3BroNachosObjArray));
   localStorage.setItem('bottom3BroNachos',JSON.stringify(bottom3BroNachosObjArray));
+  localStorage.setItem('allUsers',JSON.stringify(allUsersObjectArrayOrdered));
 
   window.open('../html/results.html');
 
@@ -147,7 +148,7 @@ function findBestMatch() {
     }
   }
 
-  var last = allUsersObjectArrayOrdered.length - 1;
+  var last = allUsersObjectArrayOrdered.length - 2;
 
   bestMatch = allUsersObjectArrayOrdered[0].userName;
   bestMatchPic = allUsersObjectArrayOrdered[0].filePath;
