@@ -2,11 +2,15 @@ body {
   background-color: #ffffe6;
 }
 
-section {
-  
-}
-
 img {
   height: 200px;
   width: 200px;
+}
+
+.matched {
+  color: green;
+}
+
+.not-matched {
+  color: red;
 }

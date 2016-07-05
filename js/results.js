@@ -37,9 +37,12 @@ pEl.textContent = bottom3BroNachosArray[2].userName;
 
 var ulEl = document.getElementById('ingredients');
 
-
 for (var i = 0; i < ingredientsArray.length; i++) {
   var liEl = document.createElement('li');
   liEl.textContent = ingredientsArray[i];
+  liEl.className = 'not-matched';
+  if(allUsers[8].userToppingsArray[i] === top3BroNachosArray[0].userToppingsArray[i]) {
+    liEl.className = 'matched';
+  }
   ulEl.appendChild(liEl);
 }
