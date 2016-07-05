@@ -128,7 +128,7 @@ function findBestMatch() {
     }
   }
 
-  var last = allUsersObjectArrayOrdered.length - 1;
+  var last = allUsersObjectArrayOrdered.length - 2;
 
   bestMatch = allUsersObjectArrayOrdered[0].userName;
   bestMatchPic = allUsersObjectArrayOrdered[0].filePath;
