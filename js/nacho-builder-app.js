@@ -1,35 +1,41 @@
-
+// Preset names of users and ingredients in arrays
 var presetUsers = ['Doug','Dylan','Sean','Kaylyn','Sam','Nick','Brian','Nadia'];
+var ingredientNamesArray = ['rice', 'beans', 'chicken', 'onions', 'jalapenos', 'corn', 'salsa', 'sourCream', 'guac', 'olives', 'cilantro', 'beer'];
+
 var bestMatch = '';
 var bestMatchPic = '';
-var allUsersObjectArray = [];
-var allUsersObjectArrayOrdered = [];
-var top3BroNachosObjArray = [];
-var bottom3BroNachosObjArray = [];
-var allToppingsArray = [];
-var userSelectedArray = [];
-var newUserToppingsArray = [];
-var ingredientsArray = ['rice', 'beans', 'chicken', 'onions', 'jalapenos', 'corn', 'salsa', 'sourCream', 'guac', 'olives', 'cilantro', 'beer'];
+
+var allUsersArray = []; // Array that stores all 8 present instances of users and the new user that builds their nachos
+var allUsersRankedArray = []; // Same array as allUsersArray but organized by 'match' score (highest match to lowest match)
+
+var top3BroNachosObjArray = []; // Array that shows top three bros by match score
+var bottom3BroNachosObjArray = []; // Array that shows bottm three bros by match score
+
+var ingredientObjArray = []; // Detailed list of all ingredient objects, including name, failpath
+
+// Arrays listing what ingredients are picked by the active user
+var userSelectedArray = []; // Array containing list of ingredients selected by user during nacho build process
+var ingredientTorFArray = []; // Array listing user ingredients as true/false in relation to ingredientsArray (e.g true, false, true... if user chose rice and chicken but not beans)
 
 // assemble ingredient objects and add event listeners
 function addIngredients () {
-  for(var i = 0; i < ingredientsArray.length; i++) {
-    var currentIngredient = document.getElementById(ingredientsArray[i]);
-    allToppingsArray.push(currentIngredient);
-    document.getElementById(ingredientsArray[i] + 'Photo').addEventListener('click', turnGreen);
+  for(var i = 0; i < ingredientNamesArray.length; i++) {
+    var currentIngredient = document.getElementById(ingredientNamesArray[i]);
+    ingredientObjArray.push(currentIngredient);
+    document.getElementById(ingredientNamesArray[i] + 'Photo').addEventListener('click', turnGreen);
   };
 };
 addIngredients();
 
-function NachoBuilder(userName, filePath, allToppingsArray) {
+function NachoBuilder(userName, filePath, ingredientObjArray) {
   this.userName = userName;
   this.filePath = filePath;
-  for(var i = 0; i < ingredientsArray.length; i++) {
-    this[ingredientsArray[i]] = allToppingsArray[i];
+  for(var i = 0; i < ingredientNamesArray.length; i++) {
+    this[ingredientNamesArray[i]] = ingredientObjArray[i];
   }
 
-  allUsersObjectArray.push(this);
-  this.userToppingsArray = allToppingsArray;
+  allUsersArray.push(this);
+  this.userToppingsArray = ingredientObjArray;
   this.matchesWithNewUser = 0;
 }
 
@@ -98,13 +104,13 @@ function removeFromPreviewFooter() {
 }
 
 function setupNewUser() {
-  for (var i = 0; i < ingredientsArray.length; i++) {
+  for (var i = 0; i < ingredientNamesArray.length; i++) {
     for (j = 0; j < userSelectedArray.length; j++) {
-      if(ingredientsArray[i] === userSelectedArray[j].value) {
-        newUserToppingsArray[i] = true;
+      if(ingredientNamesArray[i] === userSelectedArray[j].value) {
+        ingredientTorFArray[i] = true;
         break;
       } else {
-        newUserToppingsArray[i] = false;
+        ingredientTorFArray[i] = false;
       }
     }
   }
@@ -114,8 +120,8 @@ function startBroNacho() {
   event.preventDefault();
 
   setupNewUser();
-  console.log(newUserToppingsArray);
-  newUser = new NachoBuilder(userName.value,'', newUserToppingsArray);
+  console.log(ingredientTorFArray);
+  newUser = new NachoBuilder(userName.value,'', ingredientTorFArray);
 
   compareToEachUser();
   console.log(bestMatch + ' is your BroNacho');
@@ -125,31 +131,31 @@ function startBroNacho() {
 
   localStorage.setItem('top3BroNachos',JSON.stringify(top3BroNachosObjArray));
   localStorage.setItem('bottom3BroNachos',JSON.stringify(bottom3BroNachosObjArray));
-  localStorage.setItem('allUsers',JSON.stringify(allUsersObjectArrayOrdered));
+  localStorage.setItem('allUsers',JSON.stringify(allUsersRankedArray));
 
   window.open('../html/results.html');
 
 // console log all scores
-  for( var i = 0; i < allUsersObjectArrayOrdered.length - 1; i++){
-    console.log(allUsersObjectArrayOrdered[i].userName + ' ' + allUsersObjectArrayOrdered[i].matchesWithNewUser);
+  for( var i = 0; i < allUsersRankedArray.length - 1; i++){
+    console.log(allUsersRankedArray[i].userName + ' ' + allUsersRankedArray[i].matchesWithNewUser);
   }
 }
 
 function compareToEachUser() {
 
-  var last = allUsersObjectArray.length - 1;
+  var last = allUsersArray.length - 1;
   var counter = 0;
 
-  for(var i = 0; i < allUsersObjectArray.length - 1; i++) {
-    for(var j = 0; j < allUsersObjectArray[i].userToppingsArray.length; j++) {
-      if(allUsersObjectArray[i].userToppingsArray[j] === allUsersObjectArray[last].userToppingsArray[j] && (allUsersObjectArray[last].userToppingsArray[j] === true)) {
+  for(var i = 0; i < allUsersArray.length - 1; i++) {
+    for(var j = 0; j < allUsersArray[i].userToppingsArray.length; j++) {
+      if(allUsersArray[i].userToppingsArray[j] === allUsersArray[last].userToppingsArray[j] && (allUsersArray[last].userToppingsArray[j] === true)) {
         counter = counter + 2;
       }
-      if(allUsersObjectArray[i].userToppingsArray[j] === allUsersObjectArray[last].userToppingsArray[j] && (allUsersObjectArray[last].userToppingsArray[j] === false)) {
+      if(allUsersArray[i].userToppingsArray[j] === allUsersArray[last].userToppingsArray[j] && (allUsersArray[last].userToppingsArray[j] === false)) {
         counter = counter + 1;
       }
     }
-    allUsersObjectArray[i].matchesWithNewUser = counter;
+    allUsersArray[i].matchesWithNewUser = counter;
     counter = 0;
   }
 
@@ -158,23 +164,23 @@ function compareToEachUser() {
 
 function findBestMatch() {
 
-  allUsersObjectArrayOrdered = allUsersObjectArrayOrdered.concat(allUsersObjectArray);
+  allUsersRankedArray = allUsersRankedArray.concat(allUsersArray);
 
-  for(var f = 0; f < (allUsersObjectArrayOrdered.length - 2); f++) {
+  for(var f = 0; f < (allUsersRankedArray.length - 2); f++) {
     var g = f + 1;
-    if(allUsersObjectArrayOrdered[g].matchesWithNewUser > allUsersObjectArrayOrdered[f].matchesWithNewUser) {
-      var toFront = allUsersObjectArrayOrdered[g];
-      allUsersObjectArrayOrdered.splice(g,1);
-      allUsersObjectArrayOrdered.unshift(toFront);
+    if(allUsersRankedArray[g].matchesWithNewUser > allUsersRankedArray[f].matchesWithNewUser) {
+      var toFront = allUsersRankedArray[g];
+      allUsersRankedArray.splice(g,1);
+      allUsersRankedArray.unshift(toFront);
       f = -1;
     }
   }
 
-  var last = allUsersObjectArrayOrdered.length - 2;
+  var last = allUsersRankedArray.length - 2;
 
-  bestMatch = allUsersObjectArrayOrdered[0].userName;
-  bestMatchPic = allUsersObjectArrayOrdered[0].filePath;
-  top3BroNachosObjArray = [allUsersObjectArrayOrdered[0],allUsersObjectArrayOrdered[1],allUsersObjectArrayOrdered[2]];
-  bottom3BroNachosObjArray = [allUsersObjectArrayOrdered[last],allUsersObjectArrayOrdered[last - 1],allUsersObjectArrayOrdered[last - 2]];
+  bestMatch = allUsersRankedArray[0].userName;
+  bestMatchPic = allUsersRankedArray[0].filePath;
+  top3BroNachosObjArray = [allUsersRankedArray[0],allUsersRankedArray[1],allUsersRankedArray[2]];
+  bottom3BroNachosObjArray = [allUsersRankedArray[last],allUsersRankedArray[last - 1],allUsersRankedArray[last - 2]];
   return bestMatch;
 }
