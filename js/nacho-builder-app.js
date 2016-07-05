@@ -77,6 +77,13 @@ function turnGreen() {
     }
     console.log(this.alt + ' has been unchecked');
   }
+  buttonAppear();
+}
+function buttonAppear () {
+  if (userSelectedArray.length > 4)  {
+    var submitButton = document.getElementById('submitButton');
+    submitButton.className = '';
+  }
 }
 
 function removeHidden() {
