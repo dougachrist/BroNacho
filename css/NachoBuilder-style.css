@@ -67,6 +67,10 @@ img.active:hover {
   padding-top: 60px;
 }
 
+#photo_wrapper li {
+  display: inline-block;
+}
+
 #ingredientListInBuilder {
     max-width: 320px;
     padding: 3px 0;
