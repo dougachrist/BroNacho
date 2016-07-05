@@ -83,6 +83,7 @@ function startBroNacho() {
 
   localStorage.setItem('top3BroNachos',JSON.stringify(top3BroNachosObjArray));
   localStorage.setItem('bottom3BroNachos',JSON.stringify(bottom3BroNachosObjArray));
+  localStorage.setItem('allUsers',JSON.stringify(allUsersObjectArrayOrdered));
 
   window.open('../html/results.html');
 

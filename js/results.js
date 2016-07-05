@@ -1,7 +1,9 @@
 'use strict';
 
+var ingredientsArray = ['rice', 'beans', 'chicken', 'onions', 'jalapenos', 'corn', 'salsa', 'sourCream', 'guac', 'olives', 'cilantro', 'beer'];
 var top3BroNachosArray = JSON.parse(localStorage.getItem('top3BroNachos'));
 var bottom3BroNachosArray = JSON.parse(localStorage.getItem('bottom3BroNachos'));
+var allUsers = JSON.parse(localStorage.getItem('allUsers'));
 
 var ImgEl = document.getElementById('BroNacho1');
 ImgEl.setAttribute('src',top3BroNachosArray[0].filePath);
@@ -32,3 +34,12 @@ var ImgEl = document.getElementById('NachoBro3');
 ImgEl.setAttribute('src',bottom3BroNachosArray[2].filePath);
 var pEl = document.getElementById('NachoBro3Name');
 pEl.textContent = bottom3BroNachosArray[2].userName;
+
+var ulEl = document.getElementById('ingredients');
+
+
+for (var i = 0; i < ingredientsArray.length; i++) {
+  var liEl = document.createElement('li');
+  liEl.textContent = ingredientsArray[i];
+  ulEl.appendChild(liEl);
+}
