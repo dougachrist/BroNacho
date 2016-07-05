@@ -1,12 +1,7 @@
-// Global variables
+
 var presetUsers = ['Doug','Dylan','Sean','Kaylyn','Sam','Nick','Brian','Nadia'];
 var bestMatch = '';
 var bestMatchPic = '';
-
-var userName = document.getElementById('userNameInput');
-var updateList = document.getElementById('ingredientListInBuilder');
-var form = document.getElementById('nachoForm');
-
 var allUsersObjectArray = [];
 var allUsersObjectArrayOrdered = [];
 var top3BroNachosObjArray = [];
@@ -15,7 +10,7 @@ var allToppingsArray = [];
 var userSelectedArray = [];
 var ingredientsArray = ['rice', 'beans', 'chicken', 'onions', 'jalapenos', 'corn', 'salsa', 'sourCream', 'guac', 'olives', 'cilantro', 'beer'];
 
-// Function to assemble ingredient objects and add event listeners
+// assemble ingredient objects and add event listeners
 function addIngredients () {
   for(var i = 0; i < ingredientsArray.length; i++) {
     var currentIngredient = document.getElementById(ingredientsArray[i]);
@@ -25,7 +20,6 @@ function addIngredients () {
 };
 addIngredients();
 
-// Constructor to create new instance of a bro
 function NachoBuilder(userName, filePath, allToppingsArray) {
   this.userName = userName;
   this.filePath = filePath;
@@ -38,7 +32,6 @@ function NachoBuilder(userName, filePath, allToppingsArray) {
   this.matchesWithNewUser = 0;
 }
 
-// Instances of bros for comparison
 Doug = new NachoBuilder('Doug','../imgs/profile-imgs/doug.jpg',[true,false,false,false,true,false,false,true,true,false,true,false]);
 Dylan = new NachoBuilder('Dylan','../imgs/profile-imgs/dylan.jpeg',[false,true,false,false,true,true,false,false,true,true,false,false]);
 Sean = new NachoBuilder('Sean','../imgs/profile-imgs/sean.jpg',[false,false,true,false,true,true,false,false,false,true,true,false]);
@@ -48,9 +41,12 @@ Nick = new NachoBuilder('Nick','../imgs/profile-imgs/nick.jpg',[false,true,true,
 Brian = new NachoBuilder('Brian','../imgs/profile-imgs/brian.jpg',[false,false,true,true,false,true,true,false,false,false,false,false]);
 Nadia = new NachoBuilder('Nadia','../imgs/profile-imgs/nadia.jpg',[true,false,true,false,true,false,false,true,true,true,false,false]);
 
+var form = document.getElementById('nachoForm');
 form.addEventListener('submit', startBroNacho);
 
-// Event handler for image click event
+var userName = document.getElementById('userNameInput');
+var updateList = document.getElementById('ingredientListInBuilder');
+
 function turnGreen() {
   if (this.className === 'inactive') {
     this.className = 'active';
@@ -58,7 +54,12 @@ function turnGreen() {
     alt.checked = true;
     userSelectedArray.push(alt);
     removeHidden();
-    updateUserSelectedArray();
+    updateList.innerHTML = '';
+    for (var i = 0; i < userSelectedArray.length; i++) {
+      var liEl = document.createElement('li');
+      liEl.textContent = userSelectedArray[i].value;
+      updateList.appendChild(liEl);
+    }
     console.log(this.alt + ' has been selected');
   } else {
     this.className = 'inactive';
@@ -68,28 +69,26 @@ function turnGreen() {
         userSelectedArray.splice(i,1);
       }
     }
-    updateUserSelectedArray();
+    updateList.innerHTML = '';
+    for (var i = 0; i < userSelectedArray.length; i++) {
+      var liEl = document.createElement('li');
+      liEl.textContent = userSelectedArray[i].value;
+      updateList.appendChild(liEl);
+    }
     console.log(this.alt + ' has been unchecked');
   }
 }
 
-// Functions that run inside of event handler for image click event
 function removeHidden() {
   var endOfList = document.getElementById('endOfSelectedIngredients');
   updateList.className = '';
   endOfList.className = '';
 }
 
-function updateUserSelectedArray() {
-  updateList.innerHTML = '';
-  for (var i = 0; i < userSelectedArray.length; i++) {
-    var liEl = document.createElement('li');
-    liEl.textContent = userSelectedArray[i].value;
-    updateList.appendChild(liEl);
-  }
+function removeFromPreviewFooter() {
+  updateList.removeChild('liEl');
 }
 
-// Event handler for NachoBuilder form
 function startBroNacho() {
   event.preventDefault();
 
@@ -111,10 +110,8 @@ function startBroNacho() {
   for( var i = 0; i < allUsersObjectArrayOrdered.length - 1; i++){
     console.log(allUsersObjectArrayOrdered[i].userName + ' ' + allUsersObjectArrayOrdered[i].matchesWithNewUser);
   }
-
 }
 
-// Function to compare new user against hard coded instances of bros
 function compareToEachUser() {
 
   var last = allUsersObjectArray.length - 1;
@@ -136,7 +133,6 @@ function compareToEachUser() {
   findBestMatch();
 }
 
-// Function to calculate best match between new user and hard coded bro pairs
 function findBestMatch() {
 
   allUsersObjectArrayOrdered = allUsersObjectArrayOrdered.concat(allUsersObjectArray);
