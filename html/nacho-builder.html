@@ -2,17 +2,35 @@
 <html>
   <head>
     <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/NachoBuilder-style.css" />
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/NachoBuilder-style.css">
   </head>
   <body>
     <header>
     </header>
     <main>
-      <section>
-        <div id="photos">
+<!-- added extra photos -->
+      <h2>Make Your Nachos, Bro!</h2>
+      <h5>Pick ingredients by clicking on the images below.</h5>
+      <section id="selectedIngredients">
+        <h3>You have added:</h3>
+        <ul class="hidden" id="ingredientListInBuilder"></ul>
+        <h3 class="hidden" id="endOfSelectedIngredients">to your nachos</h3>
+      </section>
+      <section id="photos">
+        <div id="photo_wrapper">
           <img src="../imgs/ingredients/rice.jpg" id="ricePhoto" class="inactive" alt="rice">
           <img src="../imgs/ingredients/beans.jpg" id="beansPhoto" class="inactive" alt="beans">
           <img src="../imgs/ingredients/chicken.jpg" id="chickenPhoto" class="inactive" alt="chicken">
+          <img src="../imgs/ingredients/onions.jpg" id="onionsPhoto" class="inactive" alt="onions">
+          <img src="../imgs/ingredients/jalapenos.jpg" id="jalapenosPhoto" class="inactive" alt="jalapenos">
+          <img src="../imgs/ingredients/corn.jpg" id="cornPhoto" class="inactive" alt="corn">
+          <img src="../imgs/ingredients/salsa.jpg" id="salsaPhoto" class="inactive" alt="salsa">
+          <img src="../imgs/ingredients/sourCream.jpg" id="sourCreamPhoto" class="inactive" alt="sourCream">
+          <img src="../imgs/ingredients/guac.jpg" id="guacPhoto" class="inactive" alt="guac">
+          <img src="../imgs/ingredients/olives.jpg" id="olivesPhoto" class="inactive" alt="olives">
+          <img src="../imgs/ingredients/cilantro.jpg" id="cilantroPhoto" class="inactive" alt="cilantro">
+          <img src="../imgs/ingredients/beer.jpg" id="beerPhoto" class="inactive" alt="beer">
         </div>
       </section>
       <form id="nachoForm">
@@ -39,6 +57,6 @@
         <p id="broNachoOutput"></p>
       </section>
     </main>
-    <script src="NachoBuilder-test-app.js"> </script>
+    <script src="nacho-builder-app.js"> </script>
   </body>
 </html>
