@@ -83,10 +83,12 @@ main {
 
 main h1 {
   text-align: center;
-  margin: 50px;
+  margin-top: 75px;
+  margin-bottom: 50px;
   font-size: 42px;
   letter-spacing: 1px;
   font-weight: bold;
+  color: #333;
 }
 
 main p {
@@ -141,5 +143,30 @@ form {
 }
 
 form h2 {
-  margin: 10px;
+  margin: -10px;
+}
+
+input[type="text"]{
+  width: 200px;
+  height: 25px;
+  margin-right: 10px;
+}
+
+input[type="submit"] {
+  background-color: #444;
+  border: 0px;
+  border-radius: 4px;
+  color: #fff;
+  padding: 10px 10px;
+  font-size: 13px;
+  letter-spacing: 1px;
+  margin-top: -5px;
+}
+
+input[type="submit"]:hover {
+  cursor: pointer;
+}
+
+.submit-button {
+  margin: 15px;
 }
