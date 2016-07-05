@@ -137,12 +137,12 @@ main p {
   width: 320px;
 }
 
-form {
+#form {
   margin-top: 50px;
   text-align: center;
 }
 
-form h2 {
+#form h2 {
   margin: -10px;
 }
 
@@ -170,3 +170,18 @@ input[type="submit"]:hover {
 .submit-button {
   margin: 15px;
 }
+
+input:invalid {
+  box-shadow: 0 0 5px 1px red;
+}
+
+input:focus:invalid {
+  outline: none;
+}
+/*input:invalid {
+  border: 1px solid red;
+}
+
+input:valid {
+  border: 1px solid green;
+}*/
