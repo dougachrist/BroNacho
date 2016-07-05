@@ -91,6 +91,9 @@ main h1 {
 
 main p {
   margin: 10px;
+  line-height: 170%;
+  font-size: 18px;
+  word-spacing: 2px;
 }
 
 .logo-container {
@@ -130,4 +133,13 @@ main p {
 .right-header {
   float:right;
   width: 320px;
+}
+
+form {
+  margin-top: 50px;
+  text-align: center;
+}
+
+form h2 {
+  margin: 10px;
 }
