@@ -7,6 +7,7 @@ var allUsersObjectArrayOrdered = [];
 var top3BroNachosObjArray = [];
 var bottom3BroNachosObjArray = [];
 var allToppingsArray = [];
+var userSelectedArray = [];
 var ingredientsArray = ['rice', 'beans', 'chicken', 'onions', 'jalapenos', 'corn', 'salsa', 'sourCream', 'guac', 'olives', 'cilantro', 'beer'];
 
 // assemble ingredient objects and add event listeners
@@ -44,30 +45,48 @@ var form = document.getElementById('nachoForm');
 form.addEventListener('submit', startBroNacho);
 
 var userName = document.getElementById('userNameInput');
+var updateList = document.getElementById('ingredientListInBuilder');
 
 function turnGreen() {
   if (this.className === 'inactive') {
     this.className = 'active';
     var alt = document.getElementById(this.alt);
     alt.checked = true;
+    userSelectedArray.push(alt);
     removeHidden();
-    var updateList = document.getElementById('ingredientListInBuilder');
-    var liEl = document.createElement('li');
-    liEl.textContent = this.alt;
-    updateList.appendChild(liEl);
+    updateList.innerHTML = '';
+    for (var i = 0; i < userSelectedArray.length; i++) {
+      var liEl = document.createElement('li');
+      liEl.textContent = userSelectedArray[i].value;
+      updateList.appendChild(liEl);
+    }
     console.log(this.alt + ' has been selected');
   } else {
     this.className = 'inactive';
     document.getElementById(this.alt).checked = false;
+    for (var i = 0; i < userSelectedArray.length; i++) {
+      if(this.alt === userSelectedArray[i].value) {
+        userSelectedArray.splice(i,1);
+      }
+    }
+    updateList.innerHTML = '';
+    for (var i = 0; i < userSelectedArray.length; i++) {
+      var liEl = document.createElement('li');
+      liEl.textContent = userSelectedArray[i].value;
+      updateList.appendChild(liEl);
+    }
     console.log(this.alt + ' has been unchecked');
   }
 }
 
 function removeHidden() {
-  var updateList = document.getElementById('ingredientListInBuilder');
   var endOfList = document.getElementById('endOfSelectedIngredients');
   updateList.className = '';
   endOfList.className = '';
+}
+
+function removeFromPreviewFooter() {
+  updateList.removeChild('liEl');
 }
 
 function startBroNacho() {
