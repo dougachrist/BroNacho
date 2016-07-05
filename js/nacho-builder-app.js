@@ -71,6 +71,13 @@ function turnGreen() {
     updateUserSelectedArray();
     console.log(this.alt + ' has been unchecked');
   }
+  buttonAppear();
+}
+function buttonAppear () {
+  if (userSelectedArray.length > 4)  {
+    var submitButton = document.getElementById('submitButton');
+    submitButton.className = '';
+  }
 }
 
 // Functions that run inside of event handler for image click event

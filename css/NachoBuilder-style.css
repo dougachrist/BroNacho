@@ -95,3 +95,15 @@ img.active:hover {
   background-color: #ccc;
   opacity: .8;
   bottom: 0;
+}
+
+#submitButton {
+  border-radius: 50%;
+  background-color: #444;
+  color: white;
+  width: 100px;
+  height: 100px;
+  position: relative;
+  left: 100px;
+  bottom: 75px;
+}
