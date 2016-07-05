@@ -1,121 +1,123 @@
-
+// Preset names of users and ingredients in arrays
 var presetUsers = ['Doug','Dylan','Sean','Kaylyn','Sam','Nick','Brian','Nadia'];
+var ingredientNamesArray = ['rice', 'beans', 'chicken', 'onions', 'jalapenos', 'corn', 'salsa', 'sourCream', 'guac', 'olives', 'cilantro', 'beer'];
+
+var form = document.getElementById('nachoForm');
+var userName = document.getElementById('userNameInput');
+var updateList = document.getElementById('ingredientListInBuilder');
 var bestMatch = '';
 var bestMatchPic = '';
-var allUsersObjectArray = [];
-var allUsersObjectArrayOrdered = [];
-var top3BroNachosObjArray = [];
-var bottom3BroNachosObjArray = [];
-var allToppingsArray = [];
-var userSelectedArray = [];
-var newUserToppingsArray = [];
-var ingredientsArray = ['rice', 'beans', 'chicken', 'onions', 'jalapenos', 'corn', 'salsa', 'sourCream', 'guac', 'olives', 'cilantro', 'beer'];
+
+// Array listing all hard-coded instances of bros (and new user is pushed into allUsers on form submit)
+var allUsers = []; // Array that stores all 8 present instances of users and the new user that builds their nachos
+var allUsersRanked = []; // Same array as allUsers but organized by 'match' score (highest match to lowest match)
+
+var top3Bros = []; // Array that shows top three bros by match score
+var bottom3Bros = []; // Array that shows bottm three bros by match score
+
+var ingredientObjArray = []; // Detailed list of all ingredient objects, including name, failpath
+
+// Arrays being used when user is building their nachos
+var selectedIngredients = []; // Array containing list of ingredients selected by user during nacho build process
+var userIngredients = []; // Array listing user ingredients as booleans in relation to ingredientsArray (e.g true, false, true... if user chose rice and chicken but not beans)
 
 // assemble ingredient objects and add event listeners
 function addIngredients () {
-  for(var i = 0; i < ingredientsArray.length; i++) {
-    var currentIngredient = document.getElementById(ingredientsArray[i]);
-    allToppingsArray.push(currentIngredient);
-    document.getElementById(ingredientsArray[i] + 'Photo').addEventListener('click', turnGreen);
+  for(var i = 0; i < ingredientNamesArray.length; i++) {
+    var currentIngredient = document.getElementById(ingredientNamesArray[i]);
+    ingredientObjArray.push(currentIngredient);
+    document.getElementById(ingredientNamesArray[i] + 'Photo').addEventListener('click', handleImageSelection);
   };
 };
 addIngredients();
 
-function NachoBuilder(userName, filePath, allToppingsArray) {
+function UserBuilder(userName, filePath, ingredients) {
   this.userName = userName;
   this.filePath = filePath;
-  for(var i = 0; i < ingredientsArray.length; i++) {
-    this[ingredientsArray[i]] = allToppingsArray[i];
+  for(var i = 0; i < ingredientNamesArray.length; i++) {
+    this[ingredientNamesArray[i]] = ingredients[i];
   }
 
-  allUsersObjectArray.push(this);
-  this.userToppingsArray = allToppingsArray;
-  this.matchesWithNewUser = 0;
+  allUsers.push(this);
+  this.ingredients = ingredients;
+  this.matchesWithNewUserTally = 0;
 }
 
-Doug = new NachoBuilder('Doug','../imgs/profile-imgs/doug.jpg',[true,false,false,false,true,false,false,true,true,false,true,false]);
-Dylan = new NachoBuilder('Dylan','../imgs/profile-imgs/dylan.jpeg',[false,true,false,false,true,true,false,false,true,true,false,false]);
-Sean = new NachoBuilder('Sean','../imgs/profile-imgs/sean.jpg',[false,false,true,false,true,true,false,false,false,true,true,false]);
-Kaylyn = new NachoBuilder('Kaylyn','../imgs/profile-imgs/kaylyn.jpeg',[false,false,false,true,false,false,false,true,false,true,true,true]);
-Sam = new NachoBuilder('Sam','../imgs/profile-imgs/sam.jpeg',[true,true,true,true,false,false,false,false,true,true,true,false]);
-Nick = new NachoBuilder('Nick','../imgs/profile-imgs/nick.jpg',[false,true,true,false,true,true,true,false,false,true,false,true]);
-Brian = new NachoBuilder('Brian','../imgs/profile-imgs/brian.jpg',[false,false,true,true,false,true,true,false,false,false,false,false]);
-Nadia = new NachoBuilder('Nadia','../imgs/profile-imgs/nadia.jpg',[true,false,true,false,true,false,false,true,true,true,false,false]);
+// for loop
+Doug = new UserBuilder('Doug','../imgs/profile-imgs/doug.jpg',[true,false,false,false,true,false,false,true,true,false,true,false]);
+Dylan = new UserBuilder('Dylan','../imgs/profile-imgs/dylan.jpeg',[false,true,false,false,true,true,false,false,true,true,false,false]);
+Sean = new UserBuilder('Sean','../imgs/profile-imgs/sean.jpg',[false,false,true,false,true,true,false,false,false,true,true,false]);
+Kaylyn = new UserBuilder('Kaylyn','../imgs/profile-imgs/kaylyn.jpeg',[false,false,false,true,false,false,false,true,false,true,true,true]);
+Sam = new UserBuilder('Sam','../imgs/profile-imgs/sam.jpeg',[true,true,true,true,false,false,false,false,true,true,true,false]);
+Nick = new UserBuilder('Nick','../imgs/profile-imgs/nick.jpg',[false,true,true,false,true,true,true,false,false,true,false,true]);
+Brian = new UserBuilder('Brian','../imgs/profile-imgs/brian.jpg',[false,false,true,true,false,true,true,false,false,false,false,false]);
+Nadia = new UserBuilder('Nadia','../imgs/profile-imgs/nadia.jpg',[true,false,true,false,true,false,false,true,true,true,false,false]);
 
-var form = document.getElementById('nachoForm');
-form.addEventListener('submit', startBroNacho);
+form.addEventListener('submit', handleNachoSubmit);
 
-var userName = document.getElementById('userNameInput');
-var updateList = document.getElementById('ingredientListInBuilder');
-
-function turnGreen() {
+function handleImageSelection() {
+  var alt = document.getElementById(this.alt);
   if (this.className === 'inactive') {
     this.className = 'active';
-    var alt = document.getElementById(this.alt);
     alt.checked = true;
-    userSelectedArray.push(alt);
-    removeHidden();
-    updateList.innerHTML = '';
-    for (var i = 0; i < userSelectedArray.length; i++) {
-      var liEl = document.createElement('li');
-      liEl.textContent = userSelectedArray[i].value;
-      updateList.appendChild(liEl);
-    }
+    selectedIngredients.push(alt);
+    showIngredients();
     console.log(this.alt + ' has been selected');
   } else {
     this.className = 'inactive';
-    document.getElementById(this.alt).checked = false;
-    for (var i = 0; i < userSelectedArray.length; i++) {
-      if(this.alt === userSelectedArray[i].value) {
-        userSelectedArray.splice(i,1);
+    alt.checked = false;
+    for (var i = 0; i < selectedIngredients.length; i++) {
+      if(this.alt === selectedIngredients[i].value) {
+        selectedIngredients.splice(i,1);
       }
-    }
-    updateList.innerHTML = '';
-    for (var i = 0; i < userSelectedArray.length; i++) {
-      var liEl = document.createElement('li');
-      liEl.textContent = userSelectedArray[i].value;
-      updateList.appendChild(liEl);
     }
     console.log(this.alt + ' has been unchecked');
   }
-  buttonAppear();
+  repopulateList();
+  showButton();
 }
-function buttonAppear () {
-  if (userSelectedArray.length > 4) {
+
+function showButton() {
+  if (selectedIngredients.length > 4) {
     var submitButton = document.getElementById('submitButton');
     submitButton.className = '';
   }
 }
 
-function removeHidden() {
+function repopulateList() {
+  updateList.innerHTML = '';
+  for (var i = 0; i < selectedIngredients.length; i++) {
+    var liEl = document.createElement('li');
+    liEl.textContent = selectedIngredients[i].value;
+    updateList.appendChild(liEl);
+  }
+}
+
+function showIngredients() {
   var endOfList = document.getElementById('endOfSelectedIngredients');
   updateList.className = '';
   endOfList.className = '';
 }
 
-function removeFromPreviewFooter() {
-  updateList.removeChild('liEl');
-}
-
 function setupNewUser() {
-  for (var i = 0; i < ingredientsArray.length; i++) {
-    for (j = 0; j < userSelectedArray.length; j++) {
-      if(ingredientsArray[i] === userSelectedArray[j].value) {
-        newUserToppingsArray[i] = true;
+  for (var i = 0; i < ingredientNamesArray.length; i++) {
+    for (j = 0; j < selectedIngredients.length; j++) {
+      if(ingredientNamesArray[i] === selectedIngredients[j].value) {
+        userIngredients[i] = true;
         break;
       } else {
-        newUserToppingsArray[i] = false;
+        userIngredients[i] = false;
       }
     }
   }
 }
 
-function startBroNacho() {
+function handleNachoSubmit(event) {
   event.preventDefault();
 
   setupNewUser();
-  console.log(newUserToppingsArray);
-  newUser = new NachoBuilder(userName.value,'', newUserToppingsArray);
+  console.log(userIngredients);
+  newUser = new UserBuilder(userName.value,'', userIngredients);
 
   compareToEachUser();
   console.log(bestMatch + ' is your BroNacho');
@@ -123,33 +125,33 @@ function startBroNacho() {
   var elP = document.getElementById('broNachoOutput');
   elP.textContent = bestMatch + ' is your BroNacho';
 
-  localStorage.setItem('top3BroNachos',JSON.stringify(top3BroNachosObjArray));
-  localStorage.setItem('bottom3BroNachos',JSON.stringify(bottom3BroNachosObjArray));
-  localStorage.setItem('allUsers',JSON.stringify(allUsersObjectArrayOrdered));
+  localStorage.setItem('top3BroNachos',JSON.stringify(top3Bros));
+  localStorage.setItem('bottom3BroNachos',JSON.stringify(bottom3Bros));
+  localStorage.setItem('allUsers',JSON.stringify(allUsersRanked));
 
   window.open('../html/results.html');
 
 // console log all scores
-  for( var i = 0; i < allUsersObjectArrayOrdered.length - 1; i++){
-    console.log(allUsersObjectArrayOrdered[i].userName + ' ' + allUsersObjectArrayOrdered[i].matchesWithNewUser);
+  for( var i = 0; i < allUsersRanked.length - 1; i++){
+    console.log(allUsersRanked[i].userName + ' ' + allUsersRanked[i].matchesWithNewUserTally);
   }
 }
 
 function compareToEachUser() {
 
-  var last = allUsersObjectArray.length - 1;
+  var last = allUsers.length - 1;
   var counter = 0;
 
-  for(var i = 0; i < allUsersObjectArray.length - 1; i++) {
-    for(var j = 0; j < allUsersObjectArray[i].userToppingsArray.length; j++) {
-      if(allUsersObjectArray[i].userToppingsArray[j] === allUsersObjectArray[last].userToppingsArray[j] && (allUsersObjectArray[last].userToppingsArray[j] === true)) {
-        counter = counter + 2;
+  for(var i = 0; i < allUsers.length - 1; i++) {
+    for(var j = 0; j < allUsers[i].ingredients.length; j++) {
+      if(allUsers[i].ingredients[j] === allUsers[last].ingredients[j] && (allUsers[last].ingredients[j] === true)) {
+        counter += 2;
       }
-      if(allUsersObjectArray[i].userToppingsArray[j] === allUsersObjectArray[last].userToppingsArray[j] && (allUsersObjectArray[last].userToppingsArray[j] === false)) {
-        counter = counter + 1;
+      if(allUsers[i].ingredients[j] === allUsers[last].ingredients[j] && (allUsers[last].ingredients[j] === false)) {
+        counter += 1;
       }
     }
-    allUsersObjectArray[i].matchesWithNewUser = counter;
+    allUsers[i].matchesWithNewUserTally = counter;
     counter = 0;
   }
 
@@ -158,23 +160,21 @@ function compareToEachUser() {
 
 function findBestMatch() {
 
-  allUsersObjectArrayOrdered = allUsersObjectArrayOrdered.concat(allUsersObjectArray);
+  allUsersRanked = allUsersRanked.concat(allUsers);
 
-  for(var f = 0; f < (allUsersObjectArrayOrdered.length - 2); f++) {
-    var g = f + 1;
-    if(allUsersObjectArrayOrdered[g].matchesWithNewUser > allUsersObjectArrayOrdered[f].matchesWithNewUser) {
-      var toFront = allUsersObjectArrayOrdered[g];
-      allUsersObjectArrayOrdered.splice(g,1);
-      allUsersObjectArrayOrdered.unshift(toFront);
+  for(var f = 0; f < (allUsersRanked.length - 2); f++) {
+    if(allUsersRanked[f + 1].matchesWithNewUserTally > allUsersRanked[f].matchesWithNewUserTally) {
+      var toFront = allUsersRanked[f + 1];
+      allUsersRanked.splice(f + 1, 1);
+      allUsersRanked.unshift(toFront);
       f = -1;
     }
   }
 
-  var last = allUsersObjectArrayOrdered.length - 2;
+  var last = allUsersRanked.length - 2;
 
-  bestMatch = allUsersObjectArrayOrdered[0].userName;
-  bestMatchPic = allUsersObjectArrayOrdered[0].filePath;
-  top3BroNachosObjArray = [allUsersObjectArrayOrdered[0],allUsersObjectArrayOrdered[1],allUsersObjectArrayOrdered[2]];
-  bottom3BroNachosObjArray = [allUsersObjectArrayOrdered[last],allUsersObjectArrayOrdered[last - 1],allUsersObjectArrayOrdered[last - 2]];
-  return bestMatch;
+  bestMatch = allUsersRanked[0].userName;
+  bestMatchPic = allUsersRanked[0].filePath;
+  top3Bros = [allUsersRanked[0], allUsersRanked[1], allUsersRanked[2]];
+  bottom3Bros = [allUsersRanked[last], allUsersRanked[last - 1], allUsersRanked[last - 2]];
 }
