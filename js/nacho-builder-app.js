@@ -8,6 +8,7 @@ var top3BroNachosObjArray = [];
 var bottom3BroNachosObjArray = [];
 var allToppingsArray = [];
 var userSelectedArray = [];
+var newUserToppingsArray = [];
 var ingredientsArray = ['rice', 'beans', 'chicken', 'onions', 'jalapenos', 'corn', 'salsa', 'sourCream', 'guac', 'olives', 'cilantro', 'beer'];
 
 // assemble ingredient objects and add event listeners
@@ -80,7 +81,7 @@ function turnGreen() {
   buttonAppear();
 }
 function buttonAppear () {
-  if (userSelectedArray.length > 4)  {
+  if (userSelectedArray.length > 4) {
     var submitButton = document.getElementById('submitButton');
     submitButton.className = '';
   }
@@ -96,10 +97,25 @@ function removeFromPreviewFooter() {
   updateList.removeChild('liEl');
 }
 
+function setupNewUser() {
+  for (var i = 0; i < ingredientsArray.length; i++) {
+    for (j = 0; j < userSelectedArray.length; j++) {
+      if(ingredientsArray[i] === userSelectedArray[j].value) {
+        newUserToppingsArray[i] = true;
+        break;
+      } else {
+        newUserToppingsArray[i] = false;
+      }
+    }
+  }
+}
+
 function startBroNacho() {
   event.preventDefault();
 
-  newUser = new NachoBuilder(userName.value,'', allToppingsArray);
+  setupNewUser();
+  console.log(newUserToppingsArray);
+  newUser = new NachoBuilder(userName.value,'', newUserToppingsArray);
 
   compareToEachUser();
   console.log(bestMatch + ' is your BroNacho');
