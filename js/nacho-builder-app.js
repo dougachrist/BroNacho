@@ -120,7 +120,7 @@ function showIngredients() {
 function setupNewUser() {
   for (var i = 0; i < ingredientNamesArray.length; i++) {
     for (j = 0; j < selectedIngredients.length; j++) {
-      if(ingredientNamesArray[i] === selectedIngredients[j].value) {
+      if(ingredientNamesArray[i] === selectedIngredients[j]) {
         userIngredients[i] = true;
         break;
       } else {

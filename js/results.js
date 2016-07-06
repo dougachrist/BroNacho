@@ -4,6 +4,22 @@ var ingredientsArray = ['rice', 'beans', 'chicken', 'onions', 'jalapenos', 'corn
 var top3BroNachosArray = JSON.parse(localStorage.getItem('top3BroNachos'));
 var bottom3BroNachosArray = JSON.parse(localStorage.getItem('bottom3BroNachos'));
 var allUsers = JSON.parse(localStorage.getItem('allUsers'));
+var totalPossible = 0;
+
+function calculateTotalPossible() {
+  var counter = 0;
+  for (var i = 0; i < allUsers[8].ingredients.length; i++){
+    if (allUsers[8].ingredients[i] === true){
+      counter += 2;
+    }
+    if (allUsers[8].ingredients[i] === false){
+      counter += 1;
+    }
+  }
+  totalPossible = counter;
+}
+
+calculateTotalPossible();
 
 var ImgEl = document.getElementById('BroNacho1');
 ImgEl.setAttribute('src',top3BroNachosArray[0].filePath);
@@ -37,12 +53,29 @@ pEl.textContent = bottom3BroNachosArray[2].userName;
 
 var ulEl = document.getElementById('ingredients');
 
-for (var i = 0; i < ingredientsArray.length; i++) {
-  var liEl = document.createElement('li');
-  liEl.textContent = ingredientsArray[i];
-  liEl.className = 'not-matched';
-  if(allUsers[8].userToppingsArray[i] === top3BroNachosArray[0].userToppingsArray[i]) {
-    liEl.className = 'matched';
+function addMatchedIngredients() {
+  for (var i = 0; i < ingredientsArray.length; i++) {
+    var liEl = document.createElement('li');
+    if(allUsers[8].ingredients[i] === top3BroNachosArray[0].ingredients[i] && allUsers[8].ingredients[i] === true ) {
+      liEl.textContent = ingredientsArray[i];
+      liEl.className = 'matched';
+      ulEl.appendChild(liEl);
+    }
   }
-  ulEl.appendChild(liEl);
 }
+
+function addScore() {
+  var liEl = document.createElement('li');
+  liEl.textContent = 'score: ' + top3BroNachosArray[0].matchesWithNewUserTally;
+  ulEl.appendChild(liEl);
+  var liEl = document.createElement('li');
+  liEl.textContent = 'out of: ' + totalPossible;
+  ulEl.appendChild(liEl);
+  var liEl = document.createElement('li');
+  liEl.textContent = 'percentage: ' + (Math.round(((top3BroNachosArray[0].matchesWithNewUserTally) / totalPossible) * 100));
+  ulEl.appendChild(liEl);
+
+}
+
+addMatchedIngredients();
+addScore();
