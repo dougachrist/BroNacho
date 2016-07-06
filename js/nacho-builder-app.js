@@ -55,12 +55,18 @@ Nadia = new UserBuilder('Nadia','../imgs/profile-imgs/nadia.jpg',[true,false,tru
 
 form.addEventListener('submit', handleNachoSubmit);
 
-// window.onload = function () {
-//   if (JSON.parse(localStorage.getItem('selectedIngredients') != null)) {
-//     selectedIngredients = JSON.parse(localStorage.getItem('selectedIngredients'));
-//     console.log('localStorage used');
-//   }
-// };
+window.onload = function () {
+  if (JSON.parse(localStorage.getItem('selectedIngredients') != null)) {
+    selectedIngredients = JSON.parse(localStorage.getItem('selectedIngredients'));
+    for(var i = 0; i < selectedIngredients.length; i++) {
+      var elImg = document.getElementById(selectedIngredients[i] + 'Photo');
+      console.log(elInput);
+      elImg.className = 'active';
+      var elInput = document.getElementById(selectedIngredients[i]);
+      elInput.checked = true;
+    }
+  }
+};
 
 function handleImageSelection() {
   var alt = document.getElementById(this.alt);
