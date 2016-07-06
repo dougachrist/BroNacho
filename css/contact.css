@@ -38,8 +38,13 @@ section {
   margin-top: 75px!important;
 }
 
+.contact {
+  float: left;
+  width: 50%;
+}
+
 .contact-form {
-  float: right;
+  float: left;
 }
 
 .contact-active {
