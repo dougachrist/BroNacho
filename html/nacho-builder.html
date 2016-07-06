@@ -4,10 +4,9 @@
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/NachoBuilder-style.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
   </head>
   <body>
-    <header>
-    </header>
     <header>
       <div class="header-wrapper">
         <div class="left-header">
@@ -19,7 +18,7 @@
           <ul class="nav clearfix">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
         <div class="center-header">
@@ -38,13 +37,11 @@
       </div>
     </header>
     <main>
-<!-- added extra photos -->
-      <h2>Make Your Nachos, Bro!</h2>
-      <h5>Pick ingredients by clicking on the images below. A button to continue will appear when you have made five selections, but you can add as many ingredients as you like!</h5>
+      <h1>Start making your nachos, bro.</h1>
+      <p>Design your perfect nacho by clicking on the images displayed below. You must choose at least five toppings if you want to be considered a true BroNacho, but feel free to add as many things as you want! Click an image to get started, a new bromance soon awaits.</p>
       <section id="selectedIngredients">
         <h3>You have added:</h3>
-        <ul class="hidden" id="ingredientListInBuilder"></ul>
-        <h3 class="hidden" id="endOfSelectedIngredients">to your nachos</h3>
+        <ul class="hidden" id="addedIngreditents"></ul>
         <form id="nachoForm" >
           <fieldset>
             <label for="input_box" class="hidden">Name:</label>
@@ -81,7 +78,6 @@
           <li><img src="../imgs/ingredients/beer.jpg" id="beerPhoto" class="inactive" alt="beer"></li>
         </ul>
       </section>
-
       <section>
         <img id="broNachoPic">
         <p id="broNachoOutput"></p>
