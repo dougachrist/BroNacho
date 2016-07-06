@@ -15,13 +15,22 @@
 
 .BroName {
   text-align: center;
+  font-size: 24px;
+  margin-top: -5px;
 }
 
+#ingredients {
+  margin-top: -10px;
+}
 
 .matched {
   color: green;
   text-align: center;
   padding-bottom: 3px;
+}
+
+.matches-header {
+  text-align: center;
 }
 
 .score {
@@ -50,6 +59,7 @@ h2 {
 .icons {
   width: 80%;
   margin-left: 34%;
+  margin-top: 50px;
 }
 
 
