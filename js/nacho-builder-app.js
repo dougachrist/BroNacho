@@ -55,19 +55,27 @@ Nadia = new UserBuilder('Nadia','../imgs/profile-imgs/nadia.jpg',[true,false,tru
 
 form.addEventListener('submit', handleNachoSubmit);
 
+// window.onload = function () {
+//   if (JSON.parse(localStorage.getItem('selectedIngredients') != null)) {
+//     selectedIngredients = JSON.parse(localStorage.getItem('selectedIngredients'));
+//     console.log('localStorage used');
+//   }
+// };
+
 function handleImageSelection() {
   var alt = document.getElementById(this.alt);
+  console.log(alt.id);
   if (this.className === 'inactive') {
     this.className = 'active';
     alt.checked = true;
-    selectedIngredients.push(alt);
+    selectedIngredients.push(alt.value);
     showIngredients();
     console.log(this.alt + ' has been selected');
   } else {
     this.className = 'inactive';
     alt.checked = false;
     for (var i = 0; i < selectedIngredients.length; i++) {
-      if(this.alt === selectedIngredients[i].value) {
+      if(alt.value === selectedIngredients[i]) {
         selectedIngredients.splice(i,1);
       }
     }
@@ -75,6 +83,8 @@ function handleImageSelection() {
   }
   repopulateList();
   showButton();
+  console.log(selectedIngredients);
+  localStorage.setItem('selectedIngredients',JSON.stringify(selectedIngredients));
 }
 
 function showButton() {
@@ -88,7 +98,7 @@ function repopulateList() {
   updateList.innerHTML = '';
   for (var i = 0; i < selectedIngredients.length; i++) {
     var liEl = document.createElement('li');
-    liEl.textContent = selectedIngredients[i].value;
+    liEl.textContent = selectedIngredients[i];
     updateList.appendChild(liEl);
   }
 }
@@ -128,6 +138,8 @@ function handleNachoSubmit(event) {
   localStorage.setItem('top3BroNachos',JSON.stringify(top3Bros));
   localStorage.setItem('bottom3BroNachos',JSON.stringify(bottom3Bros));
   localStorage.setItem('allUsers',JSON.stringify(allUsersRanked));
+  selectedIngredients = [];
+  localStorage.setItem('selectedIngredients', selectedIngredients);
 
   window.open('../html/results.html');
 
