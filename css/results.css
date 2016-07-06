@@ -13,6 +13,22 @@
   margin: 20px;
 }
 
+.BroName {
+  text-align: center;
+}
+
+
+.matched {
+  color: green;
+  text-align: center;
+  padding-bottom: 3px;
+}
+
+.score {
+  text-align: center;
+  padding-bottom: 3px;
+}
+
 .clearFix {
   clear: both;
 }

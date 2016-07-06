@@ -26,36 +26,42 @@ ImgEl.setAttribute('src',top3BroNachosArray[0].filePath);
 ImgEl.className = 'userImage';
 var pEl = document.getElementById('BroNacho1Name');
 pEl.textContent = top3BroNachosArray[0].userName;
+pEl.className = "BroName";
 
 var ImgEl = document.getElementById('BroNacho2');
 ImgEl.setAttribute('src',top3BroNachosArray[1].filePath);
 ImgEl.className = 'userImage';
 var pEl = document.getElementById('BroNacho2Name');
 pEl.textContent = top3BroNachosArray[1].userName;
+pEl.className = "BroName";
 
 var ImgEl = document.getElementById('BroNacho3');
 ImgEl.setAttribute('src',top3BroNachosArray[2].filePath);
 ImgEl.className = 'userImage';
 var pEl = document.getElementById('BroNacho3Name');
 pEl.textContent = top3BroNachosArray[2].userName;
+pEl.className = "BroName";
 
 var ImgEl = document.getElementById('NachoBro1');
 ImgEl.setAttribute('src',bottom3BroNachosArray[0].filePath);
 ImgEl.className = 'userImage';
 var pEl = document.getElementById('NachoBro1Name');
 pEl.textContent = bottom3BroNachosArray[0].userName;
+pEl.className = "BroName";
 
 var ImgEl = document.getElementById('NachoBro2');
 ImgEl.setAttribute('src',bottom3BroNachosArray[1].filePath);
 ImgEl.className = 'userImage';
 var pEl = document.getElementById('NachoBro2Name');
 pEl.textContent = bottom3BroNachosArray[1].userName;
+pEl.className = "BroName";
 
 var ImgEl = document.getElementById('NachoBro3');
 ImgEl.setAttribute('src',bottom3BroNachosArray[2].filePath);
 ImgEl.className = 'userImage';
 var pEl = document.getElementById('NachoBro3Name');
 pEl.textContent = bottom3BroNachosArray[2].userName;
+pEl.className = "BroName";
 
 var ulEl = document.getElementById('ingredients');
 
@@ -73,12 +79,15 @@ function addMatchedIngredients() {
 function addScore() {
   var liEl = document.createElement('li');
   liEl.textContent = 'score: ' + top3BroNachosArray[0].matchesWithNewUserTally;
+  liEl.className = 'score';
   ulEl.appendChild(liEl);
   var liEl = document.createElement('li');
   liEl.textContent = 'out of: ' + totalPossible;
+  liEl.className = 'score';
   ulEl.appendChild(liEl);
   var liEl = document.createElement('li');
   liEl.textContent = 'percentage: ' + (Math.round(((top3BroNachosArray[0].matchesWithNewUserTally) / totalPossible) * 100));
+  liEl.className = 'score';
   ulEl.appendChild(liEl);
 
 }
