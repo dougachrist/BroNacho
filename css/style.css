@@ -5,6 +5,11 @@ body {
   background-color: #efefef;
 }
 
+h2 {
+  font-size: 160%;
+  margin-bottom: 10px;
+}
+
 /* site styles */
 
 header {
@@ -180,16 +185,28 @@ input:focus:invalid {
   outline: none;
 }
 
+#form-results {
+  text-align: center;
+}
+
+#form-results li {
+  display: inline-block;
+}
+
+#form-results li p {
+  margin: 0 auto;
+  text-align: center;
+}
+
 #form-results li img {
   display: inline-block;
   height: 200px;
   width: 200px;
-  margin-left: 40px;
-}
-/*input:invalid {
-  border: 1px solid red;
+  margin: 0 10px;
+  clear: both;
 }
 
-input:valid {
-  border: 1px solid green;
-}*/
+#form-results li img:first-of-type {
+  float: left;
+  clear: none;
+}

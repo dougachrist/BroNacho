@@ -8,6 +8,9 @@ window.onload = function () {
   if (JSON.parse(localStorage.getItem('top3BroNachos') != null)) {
     var top3BroNachos = JSON.parse(localStorage.getItem('top3BroNachos'));
     top3Bros.push(top3BroNachos);
+    var h2El = document.createElement('h2');
+    h2El.textContent = 'Your Previous Matches:';
+    formResults.appendChild(h2El);
     for(var i = 0; i < top3Bros[0].length; i++) {
       var liEl = document.createElement('li');
       var imgEl = document.createElement('img');
