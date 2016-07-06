@@ -21,7 +21,7 @@ var ingredientObjArray = []; // Detailed list of all ingredient objects, includi
 var selectedIngredients = []; // Array containing list of ingredients selected by user during nacho build process
 var userIngredients = []; // Array listing user ingredients as booleans in relation to ingredientsArray (e.g true, false, true... if user chose rice and chicken but not beans)
 
-// assemble ingredient objects and add event listeners
+// assemble ingredient objects and add event listeners to all images
 function addIngredients () {
   for(var i = 0; i < ingredientNamesArray.length; i++) {
     var currentIngredient = document.getElementById(ingredientNamesArray[i]);
@@ -31,6 +31,44 @@ function addIngredients () {
 };
 addIngredients();
 
+// Handler for image click
+function handleImageSelection() {
+  var alt = document.getElementById(this.alt);
+  if (this.className === 'inactive') {
+    this.className = 'active';
+    alt.checked = true;
+    selectedIngredients.push(alt.value);
+    showIngredients();
+  } else {
+    this.className = 'inactive';
+    alt.checked = false;
+    for (var i = 0; i < selectedIngredients.length; i++) {
+      if(alt.value === selectedIngredients[i]) {
+        selectedIngredients.splice(i,1);
+      }
+    }
+  }
+  repopulateList();
+  showButton();
+  localStorage.setItem('selectedIngredients',JSON.stringify(selectedIngredients));
+}
+
+// on page load check for local storage and repopulate page with stored data if present
+window.onload = function () {
+  if (JSON.parse(localStorage.getItem('selectedIngredients') != null)) {
+    selectedIngredients = JSON.parse(localStorage.getItem('selectedIngredients'));
+    for(var i = 0; i < selectedIngredients.length; i++) {
+      var elImg = document.getElementById(selectedIngredients[i] + 'Photo');
+      elImg.className = 'active';
+      var elInput = document.getElementById(selectedIngredients[i]);
+      elInput.checked = true;
+    }
+  }
+  showIngredients();
+  repopulateList();
+};
+
+// Constructor function to build a new user and push it into allUsers
 function UserBuilder(userName, filePath, ingredients) {
   this.userName = userName;
   this.filePath = filePath;
@@ -43,57 +81,17 @@ function UserBuilder(userName, filePath, ingredients) {
   this.matchesWithNewUserTally = 0;
 }
 
-// for loop
+// all hard coded instances of bros
 Doug = new UserBuilder('Doug','../imgs/profile-imgs/doug.jpg',[true,false,false,false,true,false,false,true,true,false,true,false]);
-Dylan = new UserBuilder('Dylan','../imgs/profile-imgs/dylan.jpeg',[false,true,false,false,true,true,false,false,true,true,false,false]);
+Dylan = new UserBuilder('Dylan','../imgs/profile-imgs/dylan.jpg',[false,true,false,false,true,true,false,false,true,true,false,false]);
 Sean = new UserBuilder('Sean','../imgs/profile-imgs/sean.jpg',[false,false,true,false,true,true,false,false,false,true,true,false]);
-Kaylyn = new UserBuilder('Kaylyn','../imgs/profile-imgs/kaylyn.jpeg',[false,false,false,true,false,false,false,true,false,true,true,true]);
+Kaylyn = new UserBuilder('Kaylyn','../imgs/profile-imgs/kaylyn.jpg',[false,false,false,true,false,false,false,true,false,true,true,true]);
 Sam = new UserBuilder('Sam','../imgs/profile-imgs/sam.jpeg',[true,true,true,true,false,false,false,false,true,true,true,false]);
 Nick = new UserBuilder('Nick','../imgs/profile-imgs/nick.jpg',[false,true,true,false,true,true,true,false,false,true,false,true]);
 Brian = new UserBuilder('Brian','../imgs/profile-imgs/brian.jpg',[false,false,true,true,false,true,true,false,false,false,false,false]);
 Nadia = new UserBuilder('Nadia','../imgs/profile-imgs/nadia.jpg',[true,false,true,false,true,false,false,true,true,true,false,false]);
 
 form.addEventListener('submit', handleNachoSubmit);
-
-window.onload = function () {
-  if (JSON.parse(localStorage.getItem('selectedIngredients') != null)) {
-    selectedIngredients = JSON.parse(localStorage.getItem('selectedIngredients'));
-    for(var i = 0; i < selectedIngredients.length; i++) {
-      var elImg = document.getElementById(selectedIngredients[i] + 'Photo');
-      console.log(elInput);
-      elImg.className = 'active';
-      var elInput = document.getElementById(selectedIngredients[i]);
-      elInput.checked = true;
-    }
-  }
-  showIngredients();
-  repopulateList();
-};
-
-function handleImageSelection() {
-  var alt = document.getElementById(this.alt);
-  console.log(alt.id);
-  if (this.className === 'inactive') {
-    this.className = 'active';
-    alt.checked = true;
-    selectedIngredients.push(alt.value);
-    showIngredients();
-    console.log(this.alt + ' has been selected');
-  } else {
-    this.className = 'inactive';
-    alt.checked = false;
-    for (var i = 0; i < selectedIngredients.length; i++) {
-      if(alt.value === selectedIngredients[i]) {
-        selectedIngredients.splice(i,1);
-      }
-    }
-    console.log(this.alt + ' has been unchecked');
-  }
-  repopulateList();
-  showButton();
-  console.log(selectedIngredients);
-  localStorage.setItem('selectedIngredients',JSON.stringify(selectedIngredients));
-}
 
 function showButton() {
   if (selectedIngredients.length > 4) {
@@ -134,14 +132,10 @@ function handleNachoSubmit(event) {
   event.preventDefault();
 
   setupNewUser();
-  console.log(userIngredients);
   newUser = new UserBuilder(userName.value,'', userIngredients);
 
   compareToEachUser();
-  console.log(bestMatch + ' is your BroNacho');
-  document.getElementById('broNachoPic').setAttribute('src', bestMatchPic);
-  var elP = document.getElementById('broNachoOutput');
-  elP.textContent = bestMatch + ' is your BroNacho';
+  findBestMatch();
 
   localStorage.setItem('top3BroNachos',JSON.stringify(top3Bros));
   localStorage.setItem('bottom3BroNachos',JSON.stringify(bottom3Bros));
@@ -149,12 +143,7 @@ function handleNachoSubmit(event) {
   selectedIngredients = [];
   localStorage.setItem('selectedIngredients', selectedIngredients);
 
-  window.open('../html/results.html');
-
-// console log all scores
-  for( var i = 0; i < allUsersRanked.length - 1; i++){
-    console.log(allUsersRanked[i].userName + ' ' + allUsersRanked[i].matchesWithNewUserTally);
-  }
+  redirectToResults();
 }
 
 function compareToEachUser() {
@@ -175,7 +164,6 @@ function compareToEachUser() {
     counter = 0;
   }
 
-  findBestMatch();
 }
 
 function findBestMatch() {
@@ -197,4 +185,8 @@ function findBestMatch() {
   bestMatchPic = allUsersRanked[0].filePath;
   top3Bros = [allUsersRanked[0], allUsersRanked[1], allUsersRanked[2]];
   bottom3Bros = [allUsersRanked[last], allUsersRanked[last - 1], allUsersRanked[last - 2]];
+}
+
+function redirectToResults() {
+  window.location.href = '../html/results.html';
 }
