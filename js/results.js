@@ -1,6 +1,6 @@
 'use strict';
 
-var ingredientsArray = ['rice', 'beans', 'chicken', 'onions', 'jalapenos', 'corn', 'salsa', 'sourCream', 'guac', 'olives', 'cilantro', 'beer'];
+var ingredientsArray = ['rice', 'beans', 'chicken', 'onions', 'jalapenos', 'corn', 'salsa', 'sourCream', 'guac', 'olives', 'cilantro', 'beer', 'beef', 'cheddar', 'greenSalsa', 'picoDeGallo'];
 var top3BroNachosArray = JSON.parse(localStorage.getItem('top3BroNachos'));
 var bottom3BroNachosArray = JSON.parse(localStorage.getItem('bottom3BroNachos'));
 var allUsers = JSON.parse(localStorage.getItem('allUsers'));
@@ -27,9 +27,6 @@ ImgEl.className = 'userImage';
 var pEl = document.getElementById('BroNacho1Name');
 pEl.textContent = top3BroNachosArray[0].userName;
 pEl.className = 'BroName';
-var pEl = document.getElementById('matches-header');
-pEl.textContent = 'You both chose...';
-pEl.className = 'matches-header';
 
 var ImgEl = document.getElementById('BroNacho2');
 ImgEl.setAttribute('src',top3BroNachosArray[1].filePath);
@@ -66,34 +63,51 @@ var pEl = document.getElementById('NachoBro3Name');
 pEl.textContent = bottom3BroNachosArray[2].userName;
 pEl.className = 'BroName';
 
-var ulEl = document.getElementById('ingredients');
+// var ulEl = document.getElementById('ingredients');
+//
+// function addMatchedIngredients() {
+//   for (var i = 0; i < ingredientsArray.length; i++) {
+//     var liEl = document.createElement('li');
+//     if(allUsers[8].ingredients[i] === top3BroNachosArray[0].ingredients[i] && allUsers[8].ingredients[i] === true ) {
+//       liEl.textContent = ingredientsArray[i];
+//       liEl.className = 'matched';
+//       ulEl.appendChild(liEl);
+//     }
+//   }
+// }
 
-function addMatchedIngredients() {
-  for (var i = 0; i < ingredientsArray.length; i++) {
-    var liEl = document.createElement('li');
-    if(allUsers[8].ingredients[i] === top3BroNachosArray[0].ingredients[i] && allUsers[8].ingredients[i] === true ) {
-      liEl.textContent = ingredientsArray[i];
-      liEl.className = 'matched';
-      ulEl.appendChild(liEl);
-    }
-  }
-}
+// function addScore() {
+//   var liEl = document.createElement('li');
+//   liEl.textContent = 'score: ' + top3BroNachosArray[0].matchesWithNewUserTally;
+//   liEl.className = 'score';
+//   ulEl.appendChild(liEl);
+//   var liEl = document.createElement('li');
+//   liEl.textContent = 'out of: ' + totalPossible;
+//   liEl.className = 'score';
+//   ulEl.appendChild(liEl);
+//   var liEl = document.createElement('li');
+//   liEl.textContent = 'percentage: ' + (Math.round(((top3BroNachosArray[0].matchesWithNewUserTally) / totalPossible) * 100));
+//   liEl.className = 'score';
+//   ulEl.appendChild(liEl);
+//
+// }
 
-function addScore() {
-  var liEl = document.createElement('li');
-  liEl.textContent = 'score: ' + top3BroNachosArray[0].matchesWithNewUserTally;
-  liEl.className = 'score';
-  ulEl.appendChild(liEl);
-  var liEl = document.createElement('li');
-  liEl.textContent = 'out of: ' + totalPossible;
-  liEl.className = 'score';
-  ulEl.appendChild(liEl);
-  var liEl = document.createElement('li');
-  liEl.textContent = 'percentage: ' + (Math.round(((top3BroNachosArray[0].matchesWithNewUserTally) / totalPossible) * 100));
-  liEl.className = 'score';
-  ulEl.appendChild(liEl);
+// addMatchedIngredients();
+// addScore();
+function makeNewGage(id,value){
+  var g = new JustGage({
+    id: id,
+    value: value,
+    min: 0,
+    max: 100,
+    title: 'BroNachoMeter'
+  });
+  return g;
+};
 
-}
-
-addMatchedIngredients();
-addScore();
+makeNewGage('gauge',75);
+makeNewGage('gauge2',65);
+makeNewGage('gauge3',55);
+makeNewGage('gauge4',35);
+makeNewGage('gauge5',25);
+makeNewGage('gauge6',15);
