@@ -59,13 +59,13 @@ img.active:hover {
   display: inline-block;
 }
 
-#addedIngredients {
+#ngredientListInBuilder {
     max-width: 320px;
     padding: 3px 0;
     margin: 0 auto;
 }
 
-#addedIngredients li {
+#ingredientListInBuilder li {
   display: inline-block;
   border: 1px solid black;
   border-radius: 5px;
