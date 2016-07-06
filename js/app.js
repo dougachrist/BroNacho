@@ -13,6 +13,9 @@ window.onload = function () {
       var imgEl = document.createElement('img');
       liEl.appendChild(imgEl);
       imgEl.setAttribute('src',top3Bros[0][i].filePath);
+      var pEl = document.createElement('p');
+      pEl.textContent = top3Bros[0][i].userName;
+      liEl.appendChild(pEl);
       formResults.appendChild(liEl);
     }
   }

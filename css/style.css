@@ -137,6 +137,7 @@ main p {
   width: 320px;
 }
 
+/* Form Styles */
 #form {
   margin-top: 50px;
   text-align: center;
@@ -177,6 +178,13 @@ input:invalid {
 
 input:focus:invalid {
   outline: none;
+}
+
+#form-results li img {
+  display: inline-block;
+  height: 200px;
+  width: 200px;
+  margin-left: 40px;
 }
 /*input:invalid {
   border: 1px solid red;
