@@ -54,7 +54,7 @@ section {
 
 .contact h1 {
   font-size: 24px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .contact p {
@@ -76,6 +76,7 @@ section {
 }
 
 .feedback {
-  font-size: 18px;
+  font-size: 24px;
   margin-bottom: 5px;
+  margin-top: 50px
 }
