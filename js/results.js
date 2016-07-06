@@ -65,37 +65,6 @@ var pEl = document.getElementById('NachoBro3Name');
 pEl.textContent = bottom3BroNachosArray[2].userName;
 pEl.className = 'BroName';
 
-// var ulEl = document.getElementById('ingredients');
-//
-// function addMatchedIngredients() {
-//   for (var i = 0; i < ingredientsArray.length; i++) {
-//     var liEl = document.createElement('li');
-//     if(allUsers[8].ingredients[i] === top3BroNachosArray[0].ingredients[i] && allUsers[8].ingredients[i] === true ) {
-//       liEl.textContent = ingredientsArray[i];
-//       liEl.className = 'matched';
-//       ulEl.appendChild(liEl);
-//     }
-//   }
-// }
-
-// function addScore() {
-//   var liEl = document.createElement('li');
-//   liEl.textContent = 'score: ' + top3BroNachosArray[0].matchesWithNewUserTally;
-//   liEl.className = 'score';
-//   ulEl.appendChild(liEl);
-//   var liEl = document.createElement('li');
-//   liEl.textContent = 'out of: ' + totalPossible;
-//   liEl.className = 'score';
-//   ulEl.appendChild(liEl);
-//   var liEl = document.createElement('li');
-//   liEl.textContent = 'percentage: ' + (Math.round(((top3BroNachosArray[0].matchesWithNewUserTally) / totalPossible) * 100));
-//   liEl.className = 'score';
-//   ulEl.appendChild(liEl);
-//
-// }
-
-// addMatchedIngredients();
-// addScore();
 function findPercentage () {
   for(var i = 0; i < top3BroNachosArray.length; i++) {
     var percent = (Math.round(((top3BroNachosArray[i].matchesWithNewUserTally) / totalPossible) * 100));
@@ -126,10 +95,3 @@ function makeNewGage(id,value){
 
 findPercentage();
 populateGage();
-//
-// makeNewGage('gauge',75);
-// makeNewGage('gauge2',65);
-// makeNewGage('gauge3',55);
-// makeNewGage('gauge4',35);
-// makeNewGage('gauge5',25);
-// makeNewGage('gauge6',15);
