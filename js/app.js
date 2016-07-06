@@ -2,6 +2,21 @@
 
 var formResults = document.getElementById('form-results');
 var theForm = document.getElementById('form');
+var top3Bros = [];
+
+window.onload = function () {
+  if (JSON.parse(localStorage.getItem('top3BroNachos') != null)) {
+    var top3BroNachos = JSON.parse(localStorage.getItem('top3BroNachos'));
+    top3Bros.push(top3BroNachos);
+    for(var i = 0; i < top3Bros[0].length; i++) {
+      var liEl = document.createElement('li');
+      var imgEl = document.createElement('img');
+      liEl.appendChild(imgEl);
+      imgEl.setAttribute('src',top3Bros[0][i].filePath);
+      formResults.appendChild(liEl);
+    }
+  }
+};
 
 function validateName(fieldText){
   var isValid = false,
