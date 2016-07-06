@@ -5,6 +5,8 @@ var top3BroNachosArray = JSON.parse(localStorage.getItem('top3BroNachos'));
 var bottom3BroNachosArray = JSON.parse(localStorage.getItem('bottom3BroNachos'));
 var allUsers = JSON.parse(localStorage.getItem('allUsers'));
 var totalPossible = 0;
+var allPercentages = [];
+var allGages = ['gauge', 'gauge2', 'gauge3', 'gauge4', 'gauge5', 'gauge6'];
 
 function calculateTotalPossible() {
   var counter = 0;
@@ -94,6 +96,23 @@ pEl.className = 'BroName';
 
 // addMatchedIngredients();
 // addScore();
+function findPercentage () {
+  for(var i = 0; i < top3BroNachosArray.length; i++) {
+    var percent = (Math.round(((top3BroNachosArray[i].matchesWithNewUserTally) / totalPossible) * 100));
+    allPercentages.push(percent);
+  }
+  for(var i = 0; i < bottom3BroNachosArray.length; i++){
+    percent = (Math.round(((bottom3BroNachosArray[i].matchesWithNewUserTally) / totalPossible) * 100));
+    allPercentages.push(percent);
+  }
+};
+
+function populateGage() {
+  for(var i = 0; i < allPercentages.length; i++) {
+    makeNewGage(allGages[i], allPercentages[i]);
+  }
+};
+
 function makeNewGage(id,value){
   var g = new JustGage({
     id: id,
@@ -105,9 +124,12 @@ function makeNewGage(id,value){
   return g;
 };
 
-makeNewGage('gauge',75);
-makeNewGage('gauge2',65);
-makeNewGage('gauge3',55);
-makeNewGage('gauge4',35);
-makeNewGage('gauge5',25);
-makeNewGage('gauge6',15);
+findPercentage();
+populateGage();
+//
+// makeNewGage('gauge',75);
+// makeNewGage('gauge2',65);
+// makeNewGage('gauge3',55);
+// makeNewGage('gauge4',35);
+// makeNewGage('gauge5',25);
+// makeNewGage('gauge6',15);
