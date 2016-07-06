@@ -1,9 +1,9 @@
-
+/* Global Styles */
 body {
   font-family: helvetica;
 }
 
-
+/* Main Styles */
 img {
   height: 200px;
   width: 200px;
@@ -11,4 +11,12 @@ img {
 
 p {
   width: 50%;
+}
+
+#form-results li img {
+  display: inline-block;
+  height: 70px;
+  width: 70px;
+  margin-left: 40px;
+  float: left;
 }
