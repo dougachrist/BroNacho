@@ -20,6 +20,12 @@ window.onload = function () {
       pEl.textContent = top3Bros[0][i].userName;
       liEl.appendChild(pEl);
       formResults.appendChild(liEl);
+      var greeting = document.getElementById('greeting');
+      greeting.textContent = 'Welcome back! Feel free to try again, or take a look at your matches below.';
+      var button = document.getElementById('button');
+      button.value = 'Try BroNacho Again!';
+      var intro = document.getElementById('intro');
+      intro.className = 'hidden';
     }
   }
 };

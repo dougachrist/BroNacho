@@ -10,6 +10,10 @@ h2 {
   margin-bottom: 10px;
 }
 
+.hidden {
+  display: none;
+}
+
 /* site styles */
 
 header {
