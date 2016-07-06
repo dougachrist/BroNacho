@@ -66,6 +66,8 @@ window.onload = function () {
       elInput.checked = true;
     }
   }
+  showIngredients();
+  repopulateList();
 };
 
 function handleImageSelection() {
