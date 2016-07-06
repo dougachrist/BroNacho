@@ -3,6 +3,11 @@
   height: 200px;
 }
 
+.top3 {
+  width: 80%;
+  margin-left: 10%;
+}
+
 .top3 div {
   float: left;
   margin: 20px;
@@ -12,15 +17,44 @@
   clear: both;
 }
 
+.bottom3 {
+  width: 80%;
+  margin-left: 10%;
+}
+
 .bottom3 div {
   float: left;
   margin: 20px;
 }
 
+h2 {
+  margin-bottom: 10px;
+}
+
+.icons {
+  width: 80%;
+  margin-left: 34%;
+}
+
+
+.icons div {
+  float: left;
+  margin: 20px;
+}
+
+
 .icons a img {
+  display: inline-block;
   height: 70px;
   width: 70px;
+  margin-left: 40px;
 }
+
+#detail-icon-img {
+  margin-left: 24px;
+  margin-top: 4px;
+}
+
 
 .matched {
   color: green;
