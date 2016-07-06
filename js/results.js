@@ -5,6 +5,8 @@ var top3BroNachosArray = JSON.parse(localStorage.getItem('top3BroNachos'));
 var bottom3BroNachosArray = JSON.parse(localStorage.getItem('bottom3BroNachos'));
 var allUsers = JSON.parse(localStorage.getItem('allUsers'));
 var totalPossible = 0;
+var allPercentages = [];
+var allGages = ['gauge', 'gauge2', 'gauge3', 'gauge4', 'gauge5', 'gauge6'];
 
 function calculateTotalPossible() {
   var counter = 0;
@@ -63,37 +65,23 @@ var pEl = document.getElementById('NachoBro3Name');
 pEl.textContent = bottom3BroNachosArray[2].userName;
 pEl.className = 'BroName';
 
-// var ulEl = document.getElementById('ingredients');
-//
-// function addMatchedIngredients() {
-//   for (var i = 0; i < ingredientsArray.length; i++) {
-//     var liEl = document.createElement('li');
-//     if(allUsers[8].ingredients[i] === top3BroNachosArray[0].ingredients[i] && allUsers[8].ingredients[i] === true ) {
-//       liEl.textContent = ingredientsArray[i];
-//       liEl.className = 'matched';
-//       ulEl.appendChild(liEl);
-//     }
-//   }
-// }
+function findPercentage () {
+  for(var i = 0; i < top3BroNachosArray.length; i++) {
+    var percent = (Math.round(((top3BroNachosArray[i].matchesWithNewUserTally) / totalPossible) * 100));
+    allPercentages.push(percent);
+  }
+  for(var i = 0; i < bottom3BroNachosArray.length; i++){
+    percent = (Math.round(((bottom3BroNachosArray[i].matchesWithNewUserTally) / totalPossible) * 100));
+    allPercentages.push(percent);
+  }
+};
 
-// function addScore() {
-//   var liEl = document.createElement('li');
-//   liEl.textContent = 'score: ' + top3BroNachosArray[0].matchesWithNewUserTally;
-//   liEl.className = 'score';
-//   ulEl.appendChild(liEl);
-//   var liEl = document.createElement('li');
-//   liEl.textContent = 'out of: ' + totalPossible;
-//   liEl.className = 'score';
-//   ulEl.appendChild(liEl);
-//   var liEl = document.createElement('li');
-//   liEl.textContent = 'percentage: ' + (Math.round(((top3BroNachosArray[0].matchesWithNewUserTally) / totalPossible) * 100));
-//   liEl.className = 'score';
-//   ulEl.appendChild(liEl);
-//
-// }
+function populateGage() {
+  for(var i = 0; i < allPercentages.length; i++) {
+    makeNewGage(allGages[i], allPercentages[i]);
+  }
+};
 
-// addMatchedIngredients();
-// addScore();
 function makeNewGage(id,value){
   var g = new JustGage({
     id: id,
@@ -105,9 +93,5 @@ function makeNewGage(id,value){
   return g;
 };
 
-makeNewGage('gauge',75);
-makeNewGage('gauge2',65);
-makeNewGage('gauge3',55);
-makeNewGage('gauge4',35);
-makeNewGage('gauge5',25);
-makeNewGage('gauge6',15);
+findPercentage();
+populateGage();
