@@ -41,27 +41,27 @@ ImgEl.className = 'userImage';
 var pEl = document.getElementById('BroNacho3Name');
 pEl.textContent = top3BroNachosArray[2].userName;
 pEl.className = 'BroName';
-//
-// var ImgEl = document.getElementById('NachoBro1');
-// ImgEl.setAttribute('src',bottom3BroNachosArray[0].filePath);
-// ImgEl.className = 'userImage';
-// var pEl = document.getElementById('NachoBro1Name');
-// pEl.textContent = bottom3BroNachosArray[0].userName;
-// pEl.className = 'BroName';
-//
-// var ImgEl = document.getElementById('NachoBro2');
-// ImgEl.setAttribute('src',bottom3BroNachosArray[1].filePath);
-// ImgEl.className = 'userImage';
-// var pEl = document.getElementById('NachoBro2Name');
-// pEl.textContent = bottom3BroNachosArray[1].userName;
-// pEl.className = 'BroName';
-//
-// var ImgEl = document.getElementById('NachoBro3');
-// ImgEl.setAttribute('src',bottom3BroNachosArray[2].filePath);
-// ImgEl.className = 'userImage';
-// var pEl = document.getElementById('NachoBro3Name');
-// pEl.textContent = bottom3BroNachosArray[2].userName;
-// pEl.className = 'BroName';
+
+var ImgEl = document.getElementById('NachoBro1');
+ImgEl.setAttribute('src',bottom3BroNachosArray[0].filePath);
+ImgEl.className = 'userImage';
+var pEl = document.getElementById('NachoBro1Name');
+pEl.textContent = bottom3BroNachosArray[0].userName;
+pEl.className = 'BroName';
+
+var ImgEl = document.getElementById('NachoBro2');
+ImgEl.setAttribute('src',bottom3BroNachosArray[1].filePath);
+ImgEl.className = 'userImage';
+var pEl = document.getElementById('NachoBro2Name');
+pEl.textContent = bottom3BroNachosArray[1].userName;
+pEl.className = 'BroName';
+
+var ImgEl = document.getElementById('NachoBro3');
+ImgEl.setAttribute('src',bottom3BroNachosArray[2].filePath);
+ImgEl.className = 'userImage';
+var pEl = document.getElementById('NachoBro3Name');
+pEl.textContent = bottom3BroNachosArray[2].userName;
+pEl.className = 'BroName';
 
 // var ulEl = document.getElementById('ingredients');
 //
@@ -107,4 +107,7 @@ function makeNewGage(id,value){
 
 makeNewGage('gauge',75);
 makeNewGage('gauge2',65);
-makeNewGage('gauge3',65);
+makeNewGage('gauge3',55);
+makeNewGage('gauge4',35);
+makeNewGage('gauge5',25);
+makeNewGage('gauge6',15);
