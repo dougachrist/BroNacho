@@ -36,9 +36,9 @@ p {
 }
 
 .about-active {
-  background-color: #B20000;
+  background-color: #B20000!important;
 }
 
 .home-active {
-  background-color: rgba(25, 125, 32, 0.92);
+  background-color: rgba(25, 125, 32, 0.92)!important;
 }
