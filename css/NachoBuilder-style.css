@@ -3,18 +3,6 @@
   display: none;
 }
 
-/* Picked Ingredients Styles */
-h2, h3, h5 {
-  text-align: center;
-}
-
-h2 {
-  font-size: 45px;
-}
-
-h3 {
-  font-size: 30px;
-}
 
 label {
   display: block;
