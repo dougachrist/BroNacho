@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 var formResults = document.getElementById('form-results');
 var theForm = document.getElementById('form');
