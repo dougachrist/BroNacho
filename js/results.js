@@ -27,23 +27,20 @@ ImgEl.className = 'userImage';
 var pEl = document.getElementById('BroNacho1Name');
 pEl.textContent = top3BroNachosArray[0].userName;
 pEl.className = 'BroName';
-var pEl = document.getElementById('matches-header');
-// pEl.textContent = 'You both chose...';
-// pEl.className = 'matches-header';
 
-// var ImgEl = document.getElementById('BroNacho2');
-// ImgEl.setAttribute('src',top3BroNachosArray[1].filePath);
-// ImgEl.className = 'userImage';
-// var pEl = document.getElementById('BroNacho2Name');
-// pEl.textContent = top3BroNachosArray[1].userName;
-// pEl.className = 'BroName';
-//
-// var ImgEl = document.getElementById('BroNacho3');
-// ImgEl.setAttribute('src',top3BroNachosArray[2].filePath);
-// ImgEl.className = 'userImage';
-// var pEl = document.getElementById('BroNacho3Name');
-// pEl.textContent = top3BroNachosArray[2].userName;
-// pEl.className = 'BroName';
+var ImgEl = document.getElementById('BroNacho2');
+ImgEl.setAttribute('src',top3BroNachosArray[1].filePath);
+ImgEl.className = 'userImage';
+var pEl = document.getElementById('BroNacho2Name');
+pEl.textContent = top3BroNachosArray[1].userName;
+pEl.className = 'BroName';
+
+var ImgEl = document.getElementById('BroNacho3');
+ImgEl.setAttribute('src',top3BroNachosArray[2].filePath);
+ImgEl.className = 'userImage';
+var pEl = document.getElementById('BroNacho3Name');
+pEl.textContent = top3BroNachosArray[2].userName;
+pEl.className = 'BroName';
 //
 // var ImgEl = document.getElementById('NachoBro1');
 // ImgEl.setAttribute('src',bottom3BroNachosArray[0].filePath);
@@ -97,13 +94,17 @@ var pEl = document.getElementById('matches-header');
 
 // addMatchedIngredients();
 // addScore();
+function makeNewGage(id,value){
+  var g = new JustGage({
+    id: id,
+    value: value,
+    min: 0,
+    max: 100,
+    title: 'BroNachoMeter'
+  });
+  return g;
+};
 
-var g = new JustGage({
-  id: 'gauge',
-  value: 67,
-  min: 0,
-  max: 100,
-  title: 'Visitors'
-});
-
-JustGage('gauge', 67);
+makeNewGage('gauge',75);
+makeNewGage('gauge2',65);
+makeNewGage('gauge3',65);
