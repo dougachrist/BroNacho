@@ -32,7 +32,11 @@ function validateName(fieldText){
 theForm.addEventListener('submit', function(event) {
   event.preventDefault();
   var inputField = document.getElementById('submit');
-  if(validateName !== true) {
+  if(validateName === false) {
     alert('This field cannot be empty!');
   }
 });
+
+function redirect() {
+  window.location.href = '../html/nacho-builder.html';
+}
