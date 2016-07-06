@@ -1,20 +1,29 @@
-body {
-  font-family: helvetica;
-}
-
 textarea {
   height: 150px;
-  width: 150px;
+  width: 350px;
   position: relative;
   left: 30px;
 }
 
-h1 {
-  font-size: 32px;
+input[type="text"]{
+  width: 200px;
+  height: 25px;
 }
 
-p {
-  font-size: 24px;
+input[type="submit"] {
+  background-color: #444;
+  border: 0px;
+  border-radius: 4px;
+  color: #fff;
+  padding: 10px 10px;
+  font-size: 13px;
+  letter-spacing: 1px;
+  top: 35px;
+  left: -180px;
+}
+
+input[type="submit"]:hover {
+  cursor: pointer;
 }
 
 input {
@@ -23,11 +32,16 @@ input {
 }
 
 section {
+  width: 960px;
   margin: 0 auto;
-  display: inline;
-  width: 800px;
   text-align: center;
+  margin-top: 75px!important;
 }
+
+.contact-form {
+  float: right;
+}
+
 .contact-active {
   background-color: #b20000;
 }
