@@ -1,10 +1,25 @@
-body {
-  background-color: #ffffe6;
+.userImage {
+  width: 200px;
+  height: 200px;
 }
 
-img {
-  height: 200px;
-  width: 200px;
+.top3 div {
+  float: left;
+  margin: 20px;
+}
+
+.clearFix {
+  clear: both;
+}
+
+.bottom3 div {
+  float: left;
+  margin: 20px;
+}
+
+.icons a img {
+  height: 70px;
+  width: 70px;
 }
 
 .matched {

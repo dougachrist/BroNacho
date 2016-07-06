@@ -23,31 +23,37 @@ calculateTotalPossible();
 
 var ImgEl = document.getElementById('BroNacho1');
 ImgEl.setAttribute('src',top3BroNachosArray[0].filePath);
+ImgEl.className = 'userImage';
 var pEl = document.getElementById('BroNacho1Name');
 pEl.textContent = top3BroNachosArray[0].userName;
 
 var ImgEl = document.getElementById('BroNacho2');
 ImgEl.setAttribute('src',top3BroNachosArray[1].filePath);
+ImgEl.className = 'userImage';
 var pEl = document.getElementById('BroNacho2Name');
 pEl.textContent = top3BroNachosArray[1].userName;
 
 var ImgEl = document.getElementById('BroNacho3');
 ImgEl.setAttribute('src',top3BroNachosArray[2].filePath);
+ImgEl.className = 'userImage';
 var pEl = document.getElementById('BroNacho3Name');
 pEl.textContent = top3BroNachosArray[2].userName;
 
 var ImgEl = document.getElementById('NachoBro1');
 ImgEl.setAttribute('src',bottom3BroNachosArray[0].filePath);
+ImgEl.className = 'userImage';
 var pEl = document.getElementById('NachoBro1Name');
 pEl.textContent = bottom3BroNachosArray[0].userName;
 
 var ImgEl = document.getElementById('NachoBro2');
 ImgEl.setAttribute('src',bottom3BroNachosArray[1].filePath);
+ImgEl.className = 'userImage';
 var pEl = document.getElementById('NachoBro2Name');
 pEl.textContent = bottom3BroNachosArray[1].userName;
 
 var ImgEl = document.getElementById('NachoBro3');
 ImgEl.setAttribute('src',bottom3BroNachosArray[2].filePath);
+ImgEl.className = 'userImage';
 var pEl = document.getElementById('NachoBro3Name');
 pEl.textContent = bottom3BroNachosArray[2].userName;
 
