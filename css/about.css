@@ -1,11 +1,44 @@
-img {
-  height: 200px;
-  width: 200px;
-  display: inline;
 
+body {
+  background-color:#efefef;
+}
+
+main {
+  width: 960px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 22px;
+}
+
+section {
+  float: left;
+  clear: both;
+  margin-bottom: 50px;
+}
+
+section img {
+  margin-top: 10px;
+  margin-right: 40px;
 }
 
 p {
-  display: inline;
-  width: 50%;
+  margin-left: 20px;
+}
+
+.users {
+ height: 200px;
+ width: 200px;
+ display: inline;
+ float: left;
+ clear: both;
+}
+
+.about-active {
+  background-color: #B20000;
+}
+
+.home-active {
+  background-color: rgba(25, 125, 32, 0.92);
 }
