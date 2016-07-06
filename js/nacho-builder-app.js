@@ -1,6 +1,6 @@
 // Preset names of users and ingredients in arrays
 var presetUsers = ['Doug','Dylan','Sean','Kaylyn','Sam','Nick','Brian','Nadia'];
-var ingredientNamesArray = ['rice', 'beans', 'chicken', 'onions', 'jalapenos', 'corn', 'salsa', 'sourCream', 'guac', 'olives', 'cilantro', 'beer'];
+var ingredientNamesArray = ['rice', 'beans', 'chicken', 'onions', 'jalapenos', 'corn', 'salsa', 'sourCream', 'guac', 'olives', 'cilantro', 'beer', 'beef', 'cheddar', 'greenSalsa', 'picoDeGallo'];
 
 var form = document.getElementById('nachoForm');
 var userName = document.getElementById('userNameInput');
@@ -82,14 +82,14 @@ function UserBuilder(userName, filePath, ingredients) {
 }
 
 // all hard coded instances of bros
-Doug = new UserBuilder('Doug','../imgs/profile-imgs/doug.jpg',[true,false,false,false,true,false,false,true,true,false,true,false]);
-Dylan = new UserBuilder('Dylan','../imgs/profile-imgs/dylan.jpg',[false,true,false,false,true,true,false,false,true,true,false,false]);
-Sean = new UserBuilder('Sean','../imgs/profile-imgs/sean.jpg',[false,false,true,false,true,true,false,false,false,true,true,false]);
-Kaylyn = new UserBuilder('Kaylyn','../imgs/profile-imgs/kaylyn.jpg',[false,false,false,true,false,false,false,true,false,true,true,true]);
-Sam = new UserBuilder('Sam','../imgs/profile-imgs/sam.jpeg',[true,true,true,true,false,false,false,false,true,true,true,false]);
-Nick = new UserBuilder('Nick','../imgs/profile-imgs/nick.jpg',[false,true,true,false,true,true,true,false,false,true,false,true]);
-Brian = new UserBuilder('Brian','../imgs/profile-imgs/brian.jpg',[false,false,true,true,false,true,true,false,false,false,false,false]);
-Nadia = new UserBuilder('Nadia','../imgs/profile-imgs/nadia.jpg',[true,false,true,false,true,false,false,true,true,true,false,false]);
+Doug = new UserBuilder('Doug','../imgs/profile-imgs/doug.jpg',[true,false,false,false,true,false,false,true,true,false,true,false,true,true,true,true]);
+Dylan = new UserBuilder('Dylan','../imgs/profile-imgs/dylan.jpg',[false,true,false,false,true,true,false,false,true,true,false,false,false,true,true,true]);
+Sean = new UserBuilder('Sean','../imgs/profile-imgs/sean.jpg',[false,false,true,false,true,true,false,false,false,true,true,false,false,false,true,true]);
+Kaylyn = new UserBuilder('Kaylyn','../imgs/profile-imgs/kaylyn.jpg',[false,false,false,true,false,false,false,true,false,true,true,true,false,false,false,true]);
+Sam = new UserBuilder('Sam','../imgs/profile-imgs/sam.jpeg',[true,true,true,true,false,false,false,false,true,true,true,false,false,false,false,false]);
+Nick = new UserBuilder('Nick','../imgs/profile-imgs/nick.jpg',[false,true,true,false,true,true,true,false,false,true,false,true,true,false,true,true]);
+Brian = new UserBuilder('Brian','../imgs/profile-imgs/brian.jpg',[false,false,true,true,false,true,true,false,false,false,false,false,true,false,false,true]);
+Nadia = new UserBuilder('Nadia','../imgs/profile-imgs/nadia.jpg',[true,false,true,false,true,false,false,true,true,true,false,false,true,false,false,false]);
 
 form.addEventListener('submit', handleNachoSubmit);
 
