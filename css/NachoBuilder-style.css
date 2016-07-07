@@ -9,11 +9,7 @@ h3 {
   display: none;
 }
 
-
-/*label {
-  display: block;
-}*/
-
+/* Img Styles */
 img.inactive {
   width: 200px;
   height: 200px;
@@ -33,6 +29,7 @@ img.active {
   height: 200px;
   border: 5px solid green;
   margin: 5px;
+  opacity: .5;
 }
 
 img.active:hover {
@@ -40,6 +37,7 @@ img.active:hover {
   height: 200px;
   border: 5px solid green;
   margin: 5px;
+  opacity: .5;
 }
 
 #nacho-form {
@@ -59,6 +57,7 @@ img.active:hover {
   width: 100%;
   margin: 30px auto;
   padding-top: 60px;
+  margin-bottom: 120px;
 }
 
 #photo_wrapper li {
@@ -89,16 +88,17 @@ img.active:hover {
   background-color: #ccc;
   opacity: .8;
   bottom: 0;
+  z-index: 1;
 }
 
 #submitButton {
   border-radius: 5%;
-  background-color: #ffff4d;
-  color: black;
+  background-color: #111111;
+  color: white;
   width: 150px;
   height: 50px;
   position: absolute;
   right: 10%;
   bottom: 37.5%;
-  border: 1px solid black;
+  border: 1px solid white;
 }
