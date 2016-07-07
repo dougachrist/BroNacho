@@ -74,7 +74,7 @@ function UserBuilder(userName, filePath, ingredients) {
   this.matchesWithNewUserTally = 0;
 }
 
-presetUsersIngredients = [[true,false,true,true,true,true,true,false,true,true,true,true,false,true,false,true], //Doug
+var presetUsersIngredients = [[true,false,true,true,true,true,true,false,true,true,true,true,false,true,false,true], //Doug
 [false,false,true,true,true,false,true,false,true,true,true,true,true,true,false,true], //Dylan
 [true,true,true,false,true,false,false,true,false,true,true,false,false,true,true,true], //Sean
 [true,true,true,true,true,true,true,true,true,true,true,true,false,true,true,true], //Kaylyn "the works"
@@ -121,7 +121,7 @@ function showIngredients() {
 
 function setupNewUser() {
   for (var i = 0; i < ingredientNamesArray.length; i++) {
-    for (j = 0; j < selectedIngredients.length; j++) {
+    for (var j = 0; j < selectedIngredients.length; j++) {
       if(ingredientNamesArray[i] === selectedIngredients[j]) {
         userIngredients[i] = true;
         break;
