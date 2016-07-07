@@ -16,6 +16,7 @@ var bottom3Bros = [];
 
 var ingredientObjArray = [];
 var selectedIngredients = [];
+var ingredientDisplayNames = [];
 var userIngredients = [];
 
 function addIngredients () {
@@ -29,10 +30,12 @@ addIngredients();
 
 function handleImageSelection() {
   var alt = document.getElementById(this.alt);
+  // var longDesc = document.getElementById(this.longDesc);
   if (this.className === 'inactive') {
     this.className = 'active';
     alt.checked = true;
     selectedIngredients.push(alt.value);
+    ingredientDisplayNames.push(alt.name);
     showIngredients();
   } else {
     this.className = 'inactive';
@@ -40,17 +43,20 @@ function handleImageSelection() {
     for (var i = 0; i < selectedIngredients.length; i++) {
       if(alt.value === selectedIngredients[i]) {
         selectedIngredients.splice(i,1);
+        ingredientDisplayNames.splice(i,1);
       }
     }
   }
   repopulateList();
   showButton();
   localStorage.setItem('selectedIngredients',JSON.stringify(selectedIngredients));
+  localStorage.setItem('ingredientDisplayNames',JSON.stringify(ingredientDisplayNames));
 }
 
 window.onload = function () {
   if (localStorage.getItem('selectedIngredients') != '' && localStorage.getItem('selectedIngredients') != null) {
     selectedIngredients = JSON.parse(localStorage.getItem('selectedIngredients'));
+    ingredientDisplayNames = JSON.parse(localStorage.getItem('ingredientDisplayNames'));
     for(var i = 0; i < selectedIngredients.length; i++) {
       var elImg = document.getElementById(selectedIngredients[i] + 'Photo');
       elImg.className = 'active';
@@ -109,7 +115,7 @@ function repopulateList() {
   updateList.innerHTML = '';
   for (var i = 0; i < selectedIngredients.length; i++) {
     var liEl = document.createElement('li');
-    liEl.textContent = selectedIngredients[i];
+    liEl.textContent = ingredientDisplayNames[i];
     updateList.appendChild(liEl);
   }
 }
@@ -145,7 +151,9 @@ function handleNachoSubmit(event) {
   localStorage.setItem('bottom3BroNachos',JSON.stringify(bottom3Bros));
   localStorage.setItem('allUsers',JSON.stringify(allUsersRanked));
   selectedIngredients = [];
+  ingredientDisplayNames = [];
   localStorage.setItem('selectedIngredients', selectedIngredients);
+  localStorage.setItem('ingredientDisplayNames', ingredientDisplayNames);
 
   redirectToResults();
 }
