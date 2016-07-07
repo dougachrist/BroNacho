@@ -1,5 +1,5 @@
 'use strict';
-var presetUsers = ['Doug','Dylan','Sean','Kaylyn','Sam','Nick','Brian','Nadia'];
+var presetUsers = ['doug','dylan','sean','kaylyn','sam','nick','brian','nadia'];
 var ingredientNamesArray = ['rice', 'beans', 'chicken', 'onions', 'jalapenos', 'corn', 'salsa', 'sourCream', 'guac', 'olives', 'cilantro', 'beer', 'beef', 'cheddar', 'greenSalsa', 'picoDeGallo'];
 
 var form = document.getElementById('nachoForm');
