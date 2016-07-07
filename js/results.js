@@ -7,6 +7,10 @@ var allUsers = JSON.parse(localStorage.getItem('allUsers'));
 var totalPossible = 0;
 var allPercentages = [];
 var allGages = ['gauge', 'gauge2', 'gauge3', 'gauge4', 'gauge5', 'gauge6'];
+var broNachoIds = ['BroNacho1','BroNacho2','BroNacho3'];
+var nachoBroIds = ['NachoBro1','NachoBro2','NachoBro3'];
+var broNachoNames = ['BroNacho1Name','BroNacho2Name','BroNacho3Name'];
+var nachoBroNames = ['NachoBro1Name','NachoBro2Name','NachoBro3Name'];
 
 function calculateTotalPossible() {
   var counter = 0;
@@ -21,49 +25,23 @@ function calculateTotalPossible() {
   totalPossible = counter;
 }
 
-calculateTotalPossible();
+function setupResults (id, nameId, filePath, userName) {
+  var ImgEl = document.getElementById(id);
+  ImgEl.setAttribute('src',filePath);
+  ImgEl.className = 'userImage';
+  var pEl = document.getElementById(nameId);
+  pEl.textContent = userName;
+  pEl.className = 'BroName';
+}
 
-var ImgEl = document.getElementById('BroNacho1');
-ImgEl.setAttribute('src',top3BroNachosArray[0].filePath);
-ImgEl.className = 'userImage';
-var pEl = document.getElementById('BroNacho1Name');
-pEl.textContent = top3BroNachosArray[0].userName;
-pEl.className = 'BroName';
-
-var ImgEl = document.getElementById('BroNacho2');
-ImgEl.setAttribute('src',top3BroNachosArray[1].filePath);
-ImgEl.className = 'userImage';
-var pEl = document.getElementById('BroNacho2Name');
-pEl.textContent = top3BroNachosArray[1].userName;
-pEl.className = 'BroName';
-
-var ImgEl = document.getElementById('BroNacho3');
-ImgEl.setAttribute('src',top3BroNachosArray[2].filePath);
-ImgEl.className = 'userImage';
-var pEl = document.getElementById('BroNacho3Name');
-pEl.textContent = top3BroNachosArray[2].userName;
-pEl.className = 'BroName';
-
-var ImgEl = document.getElementById('NachoBro1');
-ImgEl.setAttribute('src',bottom3BroNachosArray[0].filePath);
-ImgEl.className = 'userImage';
-var pEl = document.getElementById('NachoBro1Name');
-pEl.textContent = bottom3BroNachosArray[0].userName;
-pEl.className = 'BroName';
-
-var ImgEl = document.getElementById('NachoBro2');
-ImgEl.setAttribute('src',bottom3BroNachosArray[1].filePath);
-ImgEl.className = 'userImage';
-var pEl = document.getElementById('NachoBro2Name');
-pEl.textContent = bottom3BroNachosArray[1].userName;
-pEl.className = 'BroName';
-
-var ImgEl = document.getElementById('NachoBro3');
-ImgEl.setAttribute('src',bottom3BroNachosArray[2].filePath);
-ImgEl.className = 'userImage';
-var pEl = document.getElementById('NachoBro3Name');
-pEl.textContent = bottom3BroNachosArray[2].userName;
-pEl.className = 'BroName';
+function setPhotoAndNames () {
+  for (var i = 0; i < broNachoIds.length; i++) {
+    setupResults(broNachoIds[i], broNachoNames[i], top3BroNachosArray[i].filePath, top3BroNachosArray[i].userName);
+  }
+  for (var i = 0; i < broNachoIds.length; i++) {
+    setupResults(nachoBroIds[i], nachoBroNames[i], bottom3BroNachosArray[i].filePath, bottom3BroNachosArray[i].userName);
+  }
+}
 
 function findPercentage () {
   for(var i = 0; i < top3BroNachosArray.length; i++) {
@@ -93,5 +71,7 @@ function makeNewGage(id,value){
   return g;
 };
 
+calculateTotalPossible();
+setPhotoAndNames ();
 findPercentage();
 populateGage();
