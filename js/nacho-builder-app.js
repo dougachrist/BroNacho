@@ -3,7 +3,7 @@ var presetUsers = ['Doug','Dylan','Sean','Kaylyn','Sam','Nick','Brian','Nadia'];
 var ingredientNamesArray = ['rice', 'beans', 'chicken', 'onions', 'jalapenos', 'corn', 'salsa', 'sourCream', 'guac', 'olives', 'cilantro', 'beer', 'beef', 'cheddar', 'greenSalsa', 'picoDeGallo'];
 
 var form = document.getElementById('nachoForm');
-var userName = document.getElementById('userNameInput');
+var userNameInStorage = localStorage.getItem('userName');
 var updateList = document.getElementById('ingredientListInBuilder');
 var bestMatch = '';
 var bestMatchPic = '';
@@ -55,7 +55,7 @@ function handleImageSelection() {
 
 // on page load check for local storage and repopulate page with stored data if present
 window.onload = function () {
-  if (JSON.parse(localStorage.getItem('selectedIngredients') != null)) {
+  if (localStorage.getItem('selectedIngredients') != '' && localStorage.getItem('selectedIngredients') != null) {
     selectedIngredients = JSON.parse(localStorage.getItem('selectedIngredients'));
     for(var i = 0; i < selectedIngredients.length; i++) {
       var elImg = document.getElementById(selectedIngredients[i] + 'Photo');
@@ -66,6 +66,7 @@ window.onload = function () {
   }
   showIngredients();
   repopulateList();
+  showButton();
 };
 
 // Constructor function to build a new user and push it into allUsers
@@ -81,15 +82,34 @@ function UserBuilder(userName, filePath, ingredients) {
   this.matchesWithNewUserTally = 0;
 }
 
-// all hard coded instances of bros
-Doug = new UserBuilder('Doug','../imgs/profile-imgs/doug.jpg',[true,false,false,false,true,false,false,true,true,false,true,false,true,true,true,true]);
-Dylan = new UserBuilder('Dylan','../imgs/profile-imgs/dylan.jpg',[false,true,false,false,true,true,false,false,true,true,false,false,false,true,true,true]);
-Sean = new UserBuilder('Sean','../imgs/profile-imgs/sean.jpg',[false,false,true,false,true,true,false,false,false,true,true,false,false,false,true,true]);
-Kaylyn = new UserBuilder('Kaylyn','../imgs/profile-imgs/kaylyn.jpg',[false,false,false,true,false,false,false,true,false,true,true,true,false,false,false,true]);
-Sam = new UserBuilder('Sam','../imgs/profile-imgs/sam.jpeg',[true,true,true,true,false,false,false,false,true,true,true,false,false,false,false,false]);
-Nick = new UserBuilder('Nick','../imgs/profile-imgs/nick.jpg',[false,true,true,false,true,true,true,false,false,true,false,true,true,false,true,true]);
-Brian = new UserBuilder('Brian','../imgs/profile-imgs/brian.jpg',[false,false,true,true,false,true,true,false,false,false,false,false,true,false,false,true]);
-Nadia = new UserBuilder('Nadia','../imgs/profile-imgs/nadia.jpg',[true,false,true,false,true,false,false,true,true,true,false,false,true,false,false,false]);
+// all hard coded instances of bros -- idea, run for loop to generate: dont populate if Name in local storage
+// Doug = new UserBuilder('Doug','../imgs/profile-imgs/doug.jpg',[true,false,false,false,true,false,false,true,true,false,true,false,true,true,true,true]);
+// Dylan = new UserBuilder('Dylan','../imgs/profile-imgs/dylan.jpg',[false,true,false,false,true,true,false,false,true,true,false,false,false,true,true,true]);
+// Sean = new UserBuilder('Sean','../imgs/profile-imgs/sean.jpg',[false,false,true,false,true,true,false,false,false,true,true,false,false,false,true,true]);
+// Kaylyn = new UserBuilder('Kaylyn','../imgs/profile-imgs/kaylyn.jpg',[false,false,false,true,false,false,false,true,false,true,true,true,false,false,false,true]);
+// Sam = new UserBuilder('Sam','../imgs/profile-imgs/sam.jpg',[true,true,true,true,false,false,false,false,true,true,true,false,false,false,false,false]);
+// Nick = new UserBuilder('Nick','../imgs/profile-imgs/nick.jpg',[false,true,true,false,true,true,true,false,false,true,false,true,true,false,true,true]);
+// Brian = new UserBuilder('Brian','../imgs/profile-imgs/brian.jpg',[false,false,true,true,false,true,true,false,false,false,false,false,true,false,false,true]);
+// Nadia = new UserBuilder('Nadia','../imgs/profile-imgs/nadia.jpg',[true,false,true,false,true,false,false,true,true,true,false,false,true,false,false,false]);
+
+presetUsersIngredients = [[true,false,false,false,true,false,false,true,true,false,true,false,true,true,true,true], //Doug
+[false,true,false,false,true,true,false,false,true,true,false,false,false,true,true,true], //Dylan
+[false,false,true,false,true,true,false,false,false,true,true,false,false,false,true,true], //Sean
+[false,false,false,true,false,false,false,true,false,true,true,true,false,false,false,true], //Kaylyn
+[true,true,true,true,false,false,false,false,true,true,true,false,false,false,false,false], //Sam
+[false,true,true,false,true,true,true,false,false,true,false,true,true,false,true,true], // Nick
+[false,false,true,true,false,true,true,false,false,false,false,false,true,false,false,true], // Brian
+[true,false,true,false,true,false,false,true,true,true,false,false,true,false,false,false]]; // Nadia
+
+function runConstructorFunction(presetName,presetUsersIngredients) {
+  presetName = new UserBuilder(presetName,'../imgs/profile-imgs/' + presetName + '.jpg', presetUsersIngredients);
+}
+
+for (var i = 0; i < presetUsers.length; i++){
+  if (userNameInStorage !== presetUsers[i].toLowerCase()){
+    runConstructorFunction(presetUsers[i],presetUsersIngredients[i]);
+  }
+}
 
 form.addEventListener('submit', handleNachoSubmit);
 
@@ -97,6 +117,9 @@ function showButton() {
   if (selectedIngredients.length > 4) {
     var submitButton = document.getElementById('submitButton');
     submitButton.className = '';
+  } else {
+    var submitButton = document.getElementById('submitButton');
+    submitButton.className = 'hidden';
   }
 }
 
@@ -132,7 +155,7 @@ function handleNachoSubmit(event) {
   event.preventDefault();
 
   setupNewUser();
-  newUser = new UserBuilder(userName.value,'', userIngredients);
+  var newUser = new UserBuilder(userNameInStorage,'', userIngredients);
 
   compareToEachUser();
   findBestMatch();
@@ -147,10 +170,8 @@ function handleNachoSubmit(event) {
 }
 
 function compareToEachUser() {
-
   var last = allUsers.length - 1;
   var counter = 0;
-
   for(var i = 0; i < allUsers.length - 1; i++) {
     for(var j = 0; j < allUsers[i].ingredients.length; j++) {
       if(allUsers[i].ingredients[j] === allUsers[last].ingredients[j] && (allUsers[last].ingredients[j] === true)) {
@@ -163,13 +184,10 @@ function compareToEachUser() {
     allUsers[i].matchesWithNewUserTally = counter;
     counter = 0;
   }
-
 }
 
 function findBestMatch() {
-
   allUsersRanked = allUsersRanked.concat(allUsers);
-
   for(var f = 0; f < (allUsersRanked.length - 2); f++) {
     if(allUsersRanked[f + 1].matchesWithNewUserTally > allUsersRanked[f].matchesWithNewUserTally) {
       var toFront = allUsersRanked[f + 1];
@@ -178,11 +196,9 @@ function findBestMatch() {
       f = -1;
     }
   }
-
   var last = allUsersRanked.length - 2;
-
-  bestMatch = allUsersRanked[0].userName;
-  bestMatchPic = allUsersRanked[0].filePath;
+  // bestMatch = allUsersRanked[0].userName;
+  // bestMatchPic = allUsersRanked[0].filePath;
   top3Bros = [allUsersRanked[0], allUsersRanked[1], allUsersRanked[2]];
   bottom3Bros = [allUsersRanked[last], allUsersRanked[last - 1], allUsersRanked[last - 2]];
 }
