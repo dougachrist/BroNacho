@@ -30,6 +30,10 @@ window.onload = function () {
   }
 };
 
+function redirect() {
+  window.location.href = '../html/nacho-builder.html';
+}
+
 function validateName(fieldText){
   var isValid = false,
     goodChars = 'abcdefghijklmnopqrstuvwxyz0123456789.\'-'; // every acceptable character
@@ -58,12 +62,11 @@ function validateName(fieldText){
 
 theForm.addEventListener('submit', function(event) {
   event.preventDefault();
-  var inputField = document.getElementById('submit');
-  if(validateName === false) {
+  var inputField = document.getElementById('userName');
+  localStorage.setItem('userName',inputField.value.toLowerCase());
+  if(validateName(inputField.value) === false) {
     alert('This field cannot be empty!');
+  } else {
+    redirect();
   }
 });
-
-function redirect() {
-  window.location.href = '../html/nacho-builder.html';
-}

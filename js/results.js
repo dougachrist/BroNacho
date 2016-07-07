@@ -13,12 +13,13 @@ var broNachoNames = ['BroNacho1Name','BroNacho2Name','BroNacho3Name'];
 var nachoBroNames = ['NachoBro1Name','NachoBro2Name','NachoBro3Name'];
 
 function calculateTotalPossible() {
+  var last = allUsers.length - 1;
   var counter = 0;
-  for (var i = 0; i < allUsers[8].ingredients.length; i++){
-    if (allUsers[8].ingredients[i] === true){
+  for (var i = 0; i < allUsers[last].ingredients.length; i++){
+    if (allUsers[last].ingredients[i] === true){
       counter += 2;
     }
-    if (allUsers[8].ingredients[i] === false){
+    if (allUsers[last].ingredients[i] === false){
       counter += 1;
     }
   }
