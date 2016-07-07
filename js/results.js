@@ -11,6 +11,7 @@ var broNachoIds = ['BroNacho1','BroNacho2','BroNacho3'];
 var nachoBroIds = ['NachoBro1','NachoBro2','NachoBro3'];
 var broNachoNames = ['BroNacho1Name','BroNacho2Name','BroNacho3Name'];
 var nachoBroNames = ['NachoBro1Name','NachoBro2Name','NachoBro3Name'];
+var levelColorsArray = [['#33B807'], ['#33B807'], ['#33B807'], ['#E00B0B'], ['#E00B0B'], ['#E00B0B']];
 
 function calculateTotalPossible() {
   var last = allUsers.length - 1;
@@ -57,17 +58,18 @@ function findPercentage () {
 
 function populateGage() {
   for(var i = 0; i < allPercentages.length; i++) {
-    makeNewGage(allGages[i], allPercentages[i]);
+    makeNewGage(allGages[i], allPercentages[i], levelColorsArray[i]);
   }
 };
 
-function makeNewGage(id,value){
+function makeNewGage(id,value, levelColors){
   var g = new JustGage({
     id: id,
     value: value,
     min: 0,
     max: 100,
-    title: 'BroNachoMeter'
+    title: 'BroNachoMeter',
+    levelColors: levelColors
   });
   return g;
 };
