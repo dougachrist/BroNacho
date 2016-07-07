@@ -18,7 +18,7 @@ function addBrosToHomePage() {
     liEl.appendChild(pEl);
     formResults.appendChild(liEl);
     var greeting = document.getElementById('greeting');
-    greeting.textContent = 'Welcome back, ' + userNameInStorage + '! Feel free to try again, or take a look at your matches below.';
+    greeting.textContent = 'Welcome back, ' + userNameInStorage.toUpperCase() + '! Feel free to try again, or take a look at your matches below.';
     var button = document.getElementById('button');
     button.value = 'Try BroNacho Again!';
     var intro = document.getElementById('intro');
