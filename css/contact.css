@@ -18,7 +18,7 @@ input[type="text"]{
   height: 25px;
 }
 
-input[type="submit"] {
+button {
   background-color: #444;
   border: 0px;
   border-radius: 4px;
@@ -30,11 +30,11 @@ input[type="submit"] {
   left: -180px;
 }
 
-input[type="submit"]:hover {
+button:hover {
   cursor: pointer;
 }
 
-input {
+button {
   z-index: 1;
   position: relative;
 }

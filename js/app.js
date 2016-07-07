@@ -10,7 +10,9 @@ function addBrosToHomePage() {
     var liEl = document.createElement('li');
     var imgEl = document.createElement('img');
     liEl.appendChild(imgEl);
-    imgEl.setAttribute('src',top3Bros[0][i].filePath);
+    var filePath = top3Bros[0][i].filePath;
+    var updatedFilePath = filePath.substring(3,31);
+    imgEl.setAttribute('src',updatedFilePath);
     var pEl = document.createElement('p');
     pEl.textContent = top3Bros[0][i].userName;
     liEl.appendChild(pEl);
@@ -36,7 +38,7 @@ window.onload = function () {
 };
 
 function redirect() {
-  window.location.href = '../html/nacho-builder.html';
+  window.location.href = 'html/nacho-builder.html';
 }
 
 theForm.addEventListener('submit', function(event) {
