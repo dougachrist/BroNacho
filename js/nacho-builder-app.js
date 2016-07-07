@@ -1,4 +1,4 @@
-// Preset names of users and ingredients in arrays
+'use strict';
 var presetUsers = ['Doug','Dylan','Sean','Kaylyn','Sam','Nick','Brian','Nadia'];
 var ingredientNamesArray = ['rice', 'beans', 'chicken', 'onions', 'jalapenos', 'corn', 'salsa', 'sourCream', 'guac', 'olives', 'cilantro', 'beer', 'beef', 'cheddar', 'greenSalsa', 'picoDeGallo'];
 
@@ -8,20 +8,16 @@ var updateList = document.getElementById('ingredientListInBuilder');
 var bestMatch = '';
 var bestMatchPic = '';
 
-// Array listing all hard-coded instances of bros (and new user is pushed into allUsers on form submit)
-var allUsers = []; // Array that stores all 8 present instances of users and the new user that builds their nachos
-var allUsersRanked = []; // Same array as allUsers but organized by 'match' score (highest match to lowest match)
+var allUsers = [];
+var allUsersRanked = [];
 
-var top3Bros = []; // Array that shows top three bros by match score
-var bottom3Bros = []; // Array that shows bottm three bros by match score
+var top3Bros = [];
+var bottom3Bros = [];
 
-var ingredientObjArray = []; // Detailed list of all ingredient objects, including name, failpath
+var ingredientObjArray = [];
+var selectedIngredients = [];
+var userIngredients = [];
 
-// Arrays being used when user is building their nachos
-var selectedIngredients = []; // Array containing list of ingredients selected by user during nacho build process
-var userIngredients = []; // Array listing user ingredients as booleans in relation to ingredientsArray (e.g true, false, true... if user chose rice and chicken but not beans)
-
-// assemble ingredient objects and add event listeners to all images
 function addIngredients () {
   for(var i = 0; i < ingredientNamesArray.length; i++) {
     var currentIngredient = document.getElementById(ingredientNamesArray[i]);
@@ -31,7 +27,6 @@ function addIngredients () {
 };
 addIngredients();
 
-// Handler for image click
 function handleImageSelection() {
   var alt = document.getElementById(this.alt);
   if (this.className === 'inactive') {
@@ -53,7 +48,6 @@ function handleImageSelection() {
   localStorage.setItem('selectedIngredients',JSON.stringify(selectedIngredients));
 }
 
-// on page load check for local storage and repopulate page with stored data if present
 window.onload = function () {
   if (localStorage.getItem('selectedIngredients') != '' && localStorage.getItem('selectedIngredients') != null) {
     selectedIngredients = JSON.parse(localStorage.getItem('selectedIngredients'));
@@ -69,45 +63,33 @@ window.onload = function () {
   showButton();
 };
 
-// Constructor function to build a new user and push it into allUsers
 function UserBuilder(userName, filePath, ingredients) {
   this.userName = userName;
   this.filePath = filePath;
   for(var i = 0; i < ingredientNamesArray.length; i++) {
     this[ingredientNamesArray[i]] = ingredients[i];
   }
-
   allUsers.push(this);
   this.ingredients = ingredients;
   this.matchesWithNewUserTally = 0;
 }
 
-// all hard coded instances of bros -- idea, run for loop to generate: dont populate if Name in local storage
-// Doug = new UserBuilder('Doug','../imgs/profile-imgs/doug.jpg',[true,false,false,false,true,false,false,true,true,false,true,false,true,true,true,true]);
-// Dylan = new UserBuilder('Dylan','../imgs/profile-imgs/dylan.jpg',[false,true,false,false,true,true,false,false,true,true,false,false,false,true,true,true]);
-// Sean = new UserBuilder('Sean','../imgs/profile-imgs/sean.jpg',[false,false,true,false,true,true,false,false,false,true,true,false,false,false,true,true]);
-// Kaylyn = new UserBuilder('Kaylyn','../imgs/profile-imgs/kaylyn.jpg',[false,false,false,true,false,false,false,true,false,true,true,true,false,false,false,true]);
-// Sam = new UserBuilder('Sam','../imgs/profile-imgs/sam.jpg',[true,true,true,true,false,false,false,false,true,true,true,false,false,false,false,false]);
-// Nick = new UserBuilder('Nick','../imgs/profile-imgs/nick.jpg',[false,true,true,false,true,true,true,false,false,true,false,true,true,false,true,true]);
-// Brian = new UserBuilder('Brian','../imgs/profile-imgs/brian.jpg',[false,false,true,true,false,true,true,false,false,false,false,false,true,false,false,true]);
-// Nadia = new UserBuilder('Nadia','../imgs/profile-imgs/nadia.jpg',[true,false,true,false,true,false,false,true,true,true,false,false,true,false,false,false]);
-
-presetUsersIngredients = [[true,false,false,false,true,false,false,true,true,false,true,false,true,true,true,true], //Doug
-[false,true,false,false,true,true,false,false,true,true,false,false,false,true,true,true], //Dylan
-[false,false,true,false,true,true,false,false,false,true,true,false,false,false,true,true], //Sean
-[false,false,false,true,false,false,false,true,false,true,true,true,false,false,false,true], //Kaylyn
+presetUsersIngredients = [[true,false,true,true,true,true,true,false,true,true,true,true,false,true,false,true], //Doug
+[false,false,true,true,true,false,true,false,true,true,true,true,true,true,false,true], //Dylan
+[true,true,true,false,true,false,false,true,false,true,true,false,false,true,true,true], //Sean
+[true,true,true,true,true,true,true,true,true,true,true,true,false,true,true,true], //Kaylyn "the works"
 [true,true,true,true,false,false,false,false,true,true,true,false,false,false,false,false], //Sam
 [false,true,true,false,true,true,true,false,false,true,false,true,true,false,true,true], // Nick
 [false,false,true,true,false,true,true,false,false,false,false,false,true,false,false,true], // Brian
 [true,false,true,false,true,false,false,true,true,true,false,false,true,false,false,false]]; // Nadia
 
-function runConstructorFunction(presetName,presetUsersIngredients) {
+function buildPresetUsers(presetName,presetUsersIngredients) {
   presetName = new UserBuilder(presetName,'../imgs/profile-imgs/' + presetName + '.jpg', presetUsersIngredients);
 }
 
 for (var i = 0; i < presetUsers.length; i++){
   if (userNameInStorage !== presetUsers[i].toLowerCase()){
-    runConstructorFunction(presetUsers[i],presetUsersIngredients[i]);
+    buildPresetUsers(presetUsers[i],presetUsersIngredients[i]);
   }
 }
 
@@ -135,7 +117,6 @@ function repopulateList() {
 function showIngredients() {
   var endOfList = document.getElementById('endOfSelectedIngredients');
   updateList.className = '';
-  endOfList.className = '';
 }
 
 function setupNewUser() {
@@ -197,8 +178,6 @@ function findBestMatch() {
     }
   }
   var last = allUsersRanked.length - 2;
-  // bestMatch = allUsersRanked[0].userName;
-  // bestMatchPic = allUsersRanked[0].filePath;
   top3Bros = [allUsersRanked[0], allUsersRanked[1], allUsersRanked[2]];
   bottom3Bros = [allUsersRanked[last], allUsersRanked[last - 1], allUsersRanked[last - 2]];
 }

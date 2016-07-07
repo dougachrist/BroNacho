@@ -181,14 +181,6 @@ input[type="submit"]:hover {
   margin: 15px;
 }
 
-input:invalid {
-  box-shadow: 0 0 5px 1px red;
-}
-
-input:focus:invalid {
-  outline: none;
-}
-
 #form-results {
   text-align: center;
 }

@@ -39,7 +39,7 @@ function setPhotoAndNames () {
   for (var i = 0; i < broNachoIds.length; i++) {
     setupResults(broNachoIds[i], broNachoNames[i], top3BroNachosArray[i].filePath, top3BroNachosArray[i].userName);
   }
-  for (var i = 0; i < broNachoIds.length; i++) {
+  for (var i = 0; i < nachoBroIds.length; i++) {
     setupResults(nachoBroIds[i], nachoBroNames[i], bottom3BroNachosArray[i].filePath, bottom3BroNachosArray[i].userName);
   }
 }
