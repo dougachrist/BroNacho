@@ -37,9 +37,13 @@ function handleImageSelection() {
     selectedIngredients.push(alt.value);
     ingredientDisplayNames.push(alt.name);
     showIngredients();
+    var inlineLabel = this.nextSibling;
+    inlineLabel.className = 'selected';
   } else {
     this.className = 'inactive';
     alt.checked = false;
+    var inlineLabel = this.nextSibling;
+    inlineLabel.className = 'notSelected';
     for (var i = 0; i < selectedIngredients.length; i++) {
       if(alt.value === selectedIngredients[i]) {
         selectedIngredients.splice(i,1);
